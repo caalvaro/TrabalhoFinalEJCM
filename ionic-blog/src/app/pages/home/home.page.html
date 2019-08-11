@@ -1,0 +1,24 @@
+<ion-header translucent>
+  <ion-item>
+    <ion-avatar slot='start'>
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-toolbar>
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+<!--usar o ion infinite scroll--->
+
+  <ion-list class="ion-padding-top" >
+    <app-posts-cards ngFor = "let post of posts" ></app-posts-cards>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" id="infinite-scroll">
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

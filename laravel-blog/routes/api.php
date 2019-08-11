@@ -25,12 +25,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('logout', 'API\PassportController@logout');
     Route::get('get-details', 'API\PassportController@getDetails');
 
-    Route::post('createPost', 'PostController@createPost');
+    Route::post('createPost', 'PostController@createPost')->middleware('isBlogger');
     Route::get('allPost', 'PostController@listPost');
     Route::get('findPost/{id}','PostController@findPost');
     Route::get('userPosts', 'PostController@showUserPosts');
-    Route::put('updatePost/{id}', 'PostController@updatePost');
-    Route::delete('deletePost/{id}', 'PostController@deletePost');
+    Route::put('updatePost/{id}', 'PostController@updatePost')->middleware('isBlogger');
+    Route::delete('deletePost/{id}', 'PostController@deletePost')->middleware('isBlogger');
 
     Route::post('createComment/{id}', 'CommentController@createComment');
     Route::get('allComment', 'CommentController@listComment');

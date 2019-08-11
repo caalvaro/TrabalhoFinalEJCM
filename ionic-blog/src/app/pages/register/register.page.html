@@ -17,11 +17,11 @@
     <ion-row>
       <ion-col size="12">
 
-        <form [formGroup]="cadastroForm" (ngSubmit)="cadastrarUsuario(cadastroForm)">
+        <form [formGroup]="cadastroForm" (ngSubmit)="registrarUsuario(cadastroForm)">
 
           <ion-item>
             <ion-label position="stacked">Nome</ion-label>
-            <ion-input required type="text" formControlName="nome" placeholder="Digite seu nome..."></ion-input>
+            <ion-input required type="text" formControlName="name" placeholder="Digite seu nome..."></ion-input>
           </ion-item>
       
           <ion-item>
@@ -31,17 +31,20 @@
       
           <ion-item>
             <ion-label position="stacked">Senha</ion-label>
-            <ion-input required type="password" formControlName="senha" placeholder="Digite sua senha..."></ion-input>
+            <ion-input required type="password" formControlName="password" placeholder="Digite sua senha..."></ion-input>
           </ion-item>
       
           <ion-item>
             <ion-label position="stacked">Confirme sua senha</ion-label>
-            <ion-input required type="password" formControlName="senhaConfirmacao" placeholder="Digite sua senha novamente..."></ion-input>
+            <ion-input required type="password" formControlName="c_password" placeholder="Digite sua senha novamente..."></ion-input>
           </ion-item>
+          <ion-text *ngIf="cadastroForm.value.password != cadastroForm.value.c_password && cadastroForm.value.c_password != ''" color="danger">
+            <h6>A senhas não são iguais.</h6>
+          </ion-text>
       
           <!-- Adicionar Imagem -->
           
-          <ion-button type="submit">Cadastrar</ion-button>
+          <ion-button type="submit" [disabled]="cadastroForm.status != 'VALID' || cadastroForm.value.password != cadastroForm.value.c_password">Cadastrar</ion-button>
         
         </form>
         

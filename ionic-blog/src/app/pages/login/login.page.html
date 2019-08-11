@@ -20,10 +20,10 @@
         
             <ion-item> 
                 <ion-label position="floating">Senha</ion-label>
-                <ion-input type="password" formControlName="senha"></ion-input>
+                <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>
         
-            <ion-button type="submit">Login</ion-button>
+            <ion-button type="submit" [disabled]="loginForm.status != 'VALID'">Login</ion-button>
         
           </form>
         

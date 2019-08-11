@@ -16,9 +16,9 @@ class CORS
     public function handle($request, Closure $next)
     {
         $resposta =  $next($request);
-        $resposta->header('Acess-Control-Allow-Origin', 'http://localhost:8100')
-        ->header('Acess-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-        ->header('Acess-Control-Allow-Headers','Authorization,Content-Type');
+        $resposta->header('Access-Control-Allow-Origin', 'http://localhost:8100')
+        ->header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+        ->header('Access-Control-Allow-Headers','Authorization,Content-Type');
         return $resposta;
     }
 }

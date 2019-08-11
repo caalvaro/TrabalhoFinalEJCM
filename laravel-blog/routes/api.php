@@ -26,9 +26,17 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('get-details', 'API\PassportController@getDetails');
 
     Route::post('createPost', 'PostController@createPost');
-    Route::get('allPost', 'PostController@createPost');
+    Route::get('allPost', 'PostController@listPost');
     Route::get('findPost/{id}','PostController@findPost');
     Route::get('userPosts', 'PostController@showUserPosts');
     Route::put('updatePost/{id}', 'PostController@updatePost');
     Route::delete('deletePost/{id}', 'PostController@deletePost');
+
+    Route::post('createComment/{id}', 'CommentController@createComment');
+    Route::get('allComment', 'CommentController@listComment');
+    Route::get('findComment/{id}','CommentController@findComment');
+    Route::get('userComments', 'CommentController@showUserComments');
+    Route::get('postComments/{id}', 'CommentController@showPostComments');
+    Route::put('updateComment/{id}', 'CommentController@updateComment');
+    Route::delete('deleteComment/{id}', 'CommentController@deleteComment');
 });

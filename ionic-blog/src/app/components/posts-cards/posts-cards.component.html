@@ -1,0 +1,39 @@
+<ion-header class="post-header">
+  <!-- esse item tem que redirecionar para a pagina do user que postou -->
+  <ion-toolbar>
+
+    <ion-avatar slot='start' href="#"  class="item-avatar">
+      <img src="{{avatar_image}}" >
+    </ion-avatar>
+
+    <h5 class="post-name">{{name}}</h5>
+
+    <ion-button slot="end" href="#" class="more-icon" color = "white" fill = "clear">
+      <ion-icon  name="more"></ion-icon>
+    </ion-button> 
+
+  </ion-toolbar>
+
+  <h3 class="post-title"> {{post_title}}</h3>
+
+</ion-header>
+
+<div class="image">
+  <img src="{{avatar_image}}" class="post-image">
+</div>
+    
+
+
+
+  
+
+<ion-footer class="post-footer">
+  <ion-item>
+    <ion-button fill ="clear" >
+      <ion-icon slot="icon-only" name="thumbs-up" ></ion-icon>
+    </ion-button>
+      <p>textao de comentario</p>
+  </ion-item>
+
+</ion-footer>
+ 

@@ -1,5 +1,5 @@
 {
-  "name": "ionic-blog",
+  "name": "blog-app",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@angular/common": "~8.1.2",
     "@angular/compiler": "~8.1.2",
-    "@angular/core": "~8.1.2",
+    "@angular/core": "^8.2.1",
     "@angular/forms": "~8.1.2",
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",

@@ -47,7 +47,7 @@ export class RegisterPage implements OnInit {
           //console.log( res );
           localStorage.setItem('userToken', res.success.token);
           this.presentToast();
-          this.router.navigate(['home']);
+          this.router.navigate(['tabs/home']);
         }
       );
     }

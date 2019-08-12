@@ -67,7 +67,7 @@ export class PostingPage implements OnInit {
         ( res ) => {
           console.log( res );
           this.presentToast();
-          this.router.navigate(['home']);
+          this.router.navigate(['tabs/home']);
         }
       );
     }

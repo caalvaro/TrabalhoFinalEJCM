@@ -1,0 +1,19 @@
+.botao-cadastro {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+form ion-item {
+  margin-bottom: 30px;
+  width: 95%;
+}
+
+form ion-item ion-label {
+  font-size: 14pt;
+}
+
+ion-input {
+  border-width: 5px;
+}

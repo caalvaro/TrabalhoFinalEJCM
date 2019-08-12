@@ -15,6 +15,9 @@ class Comment extends Model
     public function post() {
         return $this->belongsTo('Post');
     }
+    public function likes() {
+        return $this->belongsToMany('User');
+    }
     public function newComment($request, $post_id)
     {
         $user = Auth::User();

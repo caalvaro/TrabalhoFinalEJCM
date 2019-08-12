@@ -11,12 +11,13 @@
 </ion-header>
 
 <ion-content>
-<!--usar o ion infinite scroll--->
+  <!--usar o ion infinite scroll--->
 
-  <ion-list class="ion-padding-top" >
-    <app-posts-cards ngFor = "let post of posts" ></app-posts-cards>
+  <ion-list>
+    <app-posts-cards></app-posts-cards>
+    <app-posts-cards *ngFor="let post of postPage" [cardPost] = "post"></app-posts-cards>
   </ion-list>
-  <ion-infinite-scroll threshold="100px" id="infinite-scroll">
+  <ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite) = "loadData($event)">
     <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

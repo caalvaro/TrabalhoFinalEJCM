@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'posting', loadChildren: './pages/posting/posting.module#PostingPageModule' },
   { path: 'explore', loadChildren: './pages/explore/explore.module#ExplorePageModule' },
-  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' }
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+  { path: 'comment-creation', loadChildren: './pages/comment-creation/comment-creation.module#CommentCreationPageModule' }
 ];
 @NgModule({
   imports: [

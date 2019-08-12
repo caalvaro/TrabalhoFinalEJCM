@@ -14,9 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { PostsService } from './service/posts.service';
 
+import { CommentCreationPage } from './pages/comment-creation/comment-creation.page';
+
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, CommentCreationPage],
+  entryComponents: [ CommentCreationPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,

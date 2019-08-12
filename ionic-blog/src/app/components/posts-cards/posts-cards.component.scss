@@ -1,21 +1,28 @@
-
-
 .post-header{
 
-    border-style: solid;
-    border-width: 1px 0px 0px 0px;
-    border-color:lightgray;
-    
+    padding: 0;
 
     .post-name{
         padding-left: 10px;
 
     }
 
+    .avatar-iamge{
+        border-style: solid;
+        border-width: 1px 1px 1px 1px;
+        border-color:lightgray;
+        border-radius: 20px;
+        height: 40px;
+        width: 40px;
+        
+    }
+
     .item-avatar{
+        border-radius:6px;
         padding-left: 10px;  
         height:35px ;
         width: auto;
+        cursor: pointer;
     }
 
     .post-title{
@@ -23,25 +30,39 @@
         padding-top: 0;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 9px;
+        padding-bottom: 3px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color:lightgray;
+    
+    }
+    
+    .more-icon{
+        right: 0;        
     }
 
 }
 
-.image{
-display: flex;
-justify-content: center;
-
-}
-
 .post-image{
-
-
+    margin-top:3vh;
 }
 
 .post-footer{
 
+
     border-style: solid;
-    border-width: 0px 0px 1px 0px;
+    border-width: 1px 0px 0px 0px;
     border-color:lightgray;
+}
+
+.comentario{
+
+    height: 5vh;
+    --border-color: lightgrey;
+    --border-radius:6px;
+
+}
+
+.text-content{
+    margin-top:2vh;
 }

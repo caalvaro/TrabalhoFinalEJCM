@@ -27,13 +27,17 @@ export class PostsService {
   }
 
   public postPosts( post ):Observable<any> {
-
     this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-
-    return this.http.post( this.backendURL + 'createPost/', {
+    console.log({
+      'entrou': 'na service',
       'content': post.content,
       'photo': post.photo,
     });
+    console.log(this.httpHeaders.headers);
+    return this.http.post( this.backendURL + 'createPost/', {
+      'content': post.content,
+      'photo': post.photo,
+    }, this.httpHeaders);
   }
 
 }

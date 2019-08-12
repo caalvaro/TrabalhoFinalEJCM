@@ -6,6 +6,7 @@ import { ToastController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { PostsService } from '../../service/posts.service';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -65,7 +66,6 @@ export class PostingPage implements OnInit {
       this.postsService.postPosts( postForm.value ).subscribe(
         ( res ) => {
           console.log( res );
-          localStorage.setItem('userToken', res.success.token);
           this.presentToast();
           this.router.navigate(['home']);
         }

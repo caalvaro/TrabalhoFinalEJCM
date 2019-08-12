@@ -10,13 +10,16 @@ import { PostsService } from '../../service/posts.service';
 })
 export class PostsCardsComponent implements OnInit {
 
+  // pegar todos os posts e mostrar no blog
+
   @Input() cardPost;
 
   name = 'User';
   defaultImage = '../../assets/default_image/post.jpg ';
   defaultUser = '../../assets/default_image/user.jpg ';
   postTitle = 'Titulo Default';
-  mainText = 'loanosicnasnckansklcnaslckascascascasccascasca scsCAS ASC G ZSG DG DF TXHSRTHTRSHTRHSRTHBSRTHNSRTHSRTHasc';
+  mainText = 'Texto default';
+  allPosts: number;
 
   constructor(
     private modalControler: ModalController,
@@ -25,7 +28,9 @@ export class PostsCardsComponent implements OnInit {
 
   ngOnInit() { }
 
-  // construir um post
+  getRandomId(total) {
+    return Math.floor(Math.random() * total ) + 1;
+  }
 
   async showModalComent() {
     const modal = await this.modalControler.create({
@@ -33,6 +38,22 @@ export class PostsCardsComponent implements OnInit {
     });
 
     modal.present();
+  }
+
+  public getPost(id) {
+    this.postService.getPost(id).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  // conseguir mais informacao sobre o post
+  public postInfo() {
+    console.log('mais info');
   }
 
   // trocar as informacoes de imagem para texto
@@ -43,14 +64,17 @@ export class PostsCardsComponent implements OnInit {
 
   // funcao para redirecionar pagina que da mais info sobre o user
   public userInfo() {
+    console.log( 'user tocado');
   }
 
   // funcao fz eu dar like no post
   public like() {
+    console.log('Like foi feito');
   }
 
   // funcao faz eu ver opcaoes de edicao do post
   public edit() {
+    console.log('botao de mais foi apertado');
   }
 
 }

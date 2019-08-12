@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
 
-import {  PostsCardsComponent } from '../../components/posts-cards/posts-cards.component'
+import {  PostsCardsComponent } from '../../components/posts-cards/posts-cards.component';
 
 const routes: Routes = [
   {
@@ -23,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild([{ path: '', component: HomePage }])
   ],
-  declarations: [HomePage, PostsCardsComponent,]
+  declarations: [HomePage, PostsCardsComponent]
 })
 export class HomePageModule {}

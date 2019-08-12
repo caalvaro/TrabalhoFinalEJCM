@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from  "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
 
-  backendURL : string = 'http://localhost:8000/api/';
+  backendURL = 'http://localhost:8000/api/';
 
   constructor( public http: HttpClient ) { }
 
-  public getPosts():Observable<any>{
-
-    return this.http.get(this.backendURL + 'get');
-    
+  public getAllPosts(): Observable<any> {
+    return this.http.get(this.backendURL + 'allPost');
   }
 
-  // public postPosts(id):Observable<any>{
-    
-  //     return this.http.post( this.backendURL + 'post/' + id);
-  // }
+  public getPost(id): Observable<any> {
+    return this.http.get(this.backendURL + 'findPost/' + id);
+  }
+
+  public postPosts(post): Observable<any> {
+
+    return this.http.post(this.backendURL + 'createPost', post);
+  }
 
 }

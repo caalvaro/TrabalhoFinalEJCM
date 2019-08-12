@@ -1,39 +1,43 @@
-<ion-header class="post-header">
-  <!-- esse item tem que redirecionar para a pagina do user que postou -->
-  <ion-toolbar>
+<ion-card class="card">
 
-    <ion-avatar slot='start' href="#"  class="item-avatar">
-      <img src="{{avatar_image}}" >
-    </ion-avatar>
+  <ion-card-header class="post-header">
+    <ion-toolbar class="toolbar">
+      
+      <a slot='start'  class="item-avatar" (click) = "userInfo()" >
+        <img src="{{defaultUser}}" class="avatar-iamge" >
+      </a>
 
-    <h5 class="post-name">{{name}}</h5>
+      <ion-card-subtitle class="post-name">{{name}}</ion-card-subtitle>
 
-    <ion-button slot="end" href="#" class="more-icon" color = "white" fill = "clear">
-      <ion-icon  name="more"></ion-icon>
-    </ion-button> 
+      <ion-button slot="end" class="more-icon" color="white" fill="clear" (click) = "edit()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
 
-  </ion-toolbar>
+    </ion-toolbar>
 
-  <h3 class="post-title"> {{post_title}}</h3>
+    <ion-card-title class="post-title"> {{postTitle}}</ion-card-title>
 
-</ion-header>
+  </ion-card-header>
 
-<div class="image">
-  <img src="{{avatar_image}}" class="post-image">
-</div>
-    
+  <ion-card-content class ="content">
+    <p  *ngIf="change()" class="text-content">{{mainText}}</p>
+    <img src="{{defaultImage}}" class="post-image" >
+  </ion-card-content>
+
+  <ion-item class="post-footer">
+    <ion-button fill="clear" (click) = "like()">
+      <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
+    </ion-button>
+
+    <ion-button class="comentario" fill="outline" slot="end" (click) = "showModalComent()">
+      <p>Comentario</p>
+    </ion-button>
+
+  </ion-item>
+
+</ion-card>
 
 
 
   
 
-<ion-footer class="post-footer">
-  <ion-item>
-    <ion-button fill ="clear" >
-      <ion-icon slot="icon-only" name="thumbs-up" ></ion-icon>
-    </ion-button>
-      <p>textao de comentario</p>
-  </ion-item>
-
-</ion-footer>
- 

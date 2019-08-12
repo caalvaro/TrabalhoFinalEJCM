@@ -2,3 +2,12 @@ ion-button a {
   color: white;
   text-decoration: none;
 }
+
+form ion-button {
+  width: 50%;
+  justify-self: center;
+}
+
+form ion-item {
+  margin-bottom: 30px;
+}

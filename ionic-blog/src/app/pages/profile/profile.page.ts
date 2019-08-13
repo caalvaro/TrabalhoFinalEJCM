@@ -21,7 +21,7 @@ export class ProfilePage implements OnInit {
       (res) => {
         console.log(res);
         localStorage.removeItem('userToken');
-        this.router.navigate(['home']);
+        this.router.navigate(['tabs/home']);
       }
     );
   }

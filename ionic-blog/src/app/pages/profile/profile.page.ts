@@ -11,9 +11,18 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
+  infoUsuario: any = {'email': "user@name.com",
+                      'id': -1,
+                      'isBlogger': 0,
+                      'name': "Username",
+                      'photo': '..\\..\\..\\assets\\icon\\user.png'};
+  
   constructor(public router: Router, public authService: AuthService) { }
 
-  ngOnInit() {
+  ionViewDidEnter () {
+    if (localStorage.getItem('userToken') != null) {
+      this.getInfoUsuario();
+    }
   }
 
   deslogarUsuario() {
@@ -22,6 +31,24 @@ export class ProfilePage implements OnInit {
         console.log(res);
         localStorage.removeItem('userToken');
         this.router.navigate(['tabs/home']);
+        this.infoUsuario = {'email': "user@name.com",
+                            'id': -1,
+                            'isBlogger': 0,
+                            'name': "Username",
+                            'photo': '..\\..\\..\\assets\\icon\\user.png'};
+      }
+    );
+  }
+
+  getInfoUsuario() {
+    this.authService.getInfoUsuario().subscribe(
+      (res) => {
+        console.log(res);
+        this.infoUsuario = res.success;
+        if (res.success.photo == null) {
+          this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
+        }
+        console.log(this.infoUsuario);
       }
     );
   }

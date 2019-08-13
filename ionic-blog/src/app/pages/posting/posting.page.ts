@@ -30,9 +30,9 @@ export class PostingPage implements OnInit {
   ngOnInit() {
   }
 
-  async presentToast() {
+  async presentToast(mensagem) {
     const toast = await this.toastController.create({
-      message: 'Post criado com sucesso!',
+      message: mensagem,
       duration: 2000
     });
     toast.present();
@@ -65,8 +65,15 @@ export class PostingPage implements OnInit {
 
       this.postsService.postPosts( postForm.value ).subscribe(
         ( res ) => {
+          let mensagem: string = 'Erro';
           console.log( res );
-          this.presentToast();
+          if ( res[0] == "Apenas Bloggers podem criar, editar e excluir posts") {
+            mensagem = "ERRO! Apenas Bloggers podem criar, editar e excluir posts";
+          }
+          else {
+            mensagem = "Post criado com sucesso!";
+          }
+          this.presentToast(mensagem);
           this.router.navigate(['tabs/home']);
         }
       );

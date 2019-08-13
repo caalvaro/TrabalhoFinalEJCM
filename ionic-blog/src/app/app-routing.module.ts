@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'posting', loadChildren: './pages/posting/posting.module#PostingPageModule' },
   { path: 'explore', loadChildren: './pages/explore/explore.module#ExplorePageModule' },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
-  { path: 'comment-creation', loadChildren: './pages/comment-creation/comment-creation.module#CommentCreationPageModule' }
+  { path: 'comment-creation', loadChildren: './pages/comment-creation/comment-creation.module#CommentCreationPageModule' },  { path: 'edit-profile', loadChildren: './pages/edit-profile/edit-profile.module#EditProfilePageModule' }
+
 ];
 @NgModule({
   imports: [

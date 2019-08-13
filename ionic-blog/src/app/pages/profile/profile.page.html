@@ -1,11 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <p>Profile funciona</p>
-  <ion-button routerLinkActive="active"><a routerLink = "/register">Cadastre-se</a></ion-button>
-  <ion-button color="danger" (click)="deslogarUsuario()"><ion-icon name="log-out"></ion-icon>Sair</ion-button>
+
+  <ion-grid fixed>
+
+    <ion-row class="header-user">
+      <ion-col size="4">
+        <img class="img-user" src="..\..\..\assets\icon\user.png">
+      </ion-col>
+
+      <ion-col size="8" align-self-center>
+        <h1 class="text">User Name</h1>
+        <br>
+        <h6 class="text">Email: user@email.com</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <!-- esse botão vai sair daqui quando fizermos a diferenciação entre usuário e visitante -->
+        <ion-button expand="block" routerLinkActive="active"><a routerLink = "/register">Cadastre-se</a></ion-button>
+        <ion-button expand="block" routerLinkActive="active"><a routerLink = "/#"><ion-icon slot="start" name="create"></ion-icon>Editar</a></ion-button>
+        <ion-button expand="block" color="danger" (click)="deslogarUsuario()"><ion-icon name="log-out"></ion-icon>Sair</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
 </ion-content>

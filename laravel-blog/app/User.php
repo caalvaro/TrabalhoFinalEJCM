@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,21 @@ class User extends Authenticatable
     }
     public function likes() {
         return $this->belongsToMany('App\Comment');
+    }
+    public function updateContent($request)
+    {
+        if($request->name)
+        {
+            $this->name = $request->name;
+        }
+        if($request->photo)
+        {
+            if(!Storage::exists('localPhotos/'));
+                Storage::makeDirectory('localPhotos/',0775,true);
+            $file = $request->file('photo');
+            $path = $file->store('localPhotos');
+            $this->photo = $path;
+        }
+        $this->save(); 
     }
 }

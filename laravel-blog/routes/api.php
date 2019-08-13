@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('findComment/{id}','CommentController@findComment');
     Route::get('userComments', 'CommentController@showUserComments');
     Route::get('postComments/{id}', 'CommentController@showPostComments');
+    Route::get('showLikes/{id}', 'CommentController@showLikes');
 
     Route::put('updateComment/{id}', 'CommentController@updateComment');
 

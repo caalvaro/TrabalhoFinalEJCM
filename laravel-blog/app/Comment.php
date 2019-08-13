@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     public function user() {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\User');
     }
     public function post() {
-        return $this->belongsTo('Post');
+        return $this->belongsTo('App\Post');
     }
+
     public function likes() {
-        return $this->belongsToMany('User');
+        return $this->belongsToMany('App\User');
     }
     public function newComment($request, $post_id)
     {

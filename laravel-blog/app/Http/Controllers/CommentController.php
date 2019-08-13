@@ -44,7 +44,13 @@ class CommentController extends Controller
 	public function showLikes($id)
 	{
 		$comment = Comment::find($id);
-		return $comment->likes()->count();
+		if($comment)
+		{
+			return $comment->likes()->count();
+		}
+		else {
+			return response()->json('Comment não Encontrado, verifique o id');
+		}
 	}
 	public function updateComment(Request $request, $id)
 	{

@@ -34,9 +34,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('findPost/{id}','PostController@findPost');
     Route::get('userPosts', 'PostController@showUserPosts');
 
-    Route::put('updatePost/{id}', 'PostController@updatePost')->middleware('isBlogger');
+    Route::put('updatePost/{id}', 'PostController@updatePost')->middleware('isBlogger')->middleware('isPostOwner');
 
-    Route::delete('deletePost/{id}', 'PostController@deletePost')->middleware('isBlogger');
+    Route::delete('deletePost/{id}', 'PostController@deletePost')->middleware('isBlogger')->middleware('isPostOwner');
 
 
     Route::post('createComment/{id}', 'CommentController@createComment');
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('postComments/{id}', 'CommentController@showPostComments');
     Route::get('showLikes/{id}', 'CommentController@showLikes');
 
-    Route::put('updateComment/{id}', 'CommentController@updateComment');
+    Route::put('updateComment/{id}', 'CommentController@updateComment')->middleware('isCommentOwner');
 
-    Route::delete('deleteComment/{id}', 'CommentController@deleteComment');
+    Route::delete('deleteComment/{id}', 'CommentController@deleteComment')->middleware('isCommentOwner');
 });

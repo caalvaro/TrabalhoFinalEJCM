@@ -27,9 +27,9 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit() {
   }
 
-  async presentToast() {
+  async presentToast( message ) {
     const toast = await this.toastController.create({
-      message: 'Um email foi enviado para você!',
+      message: message,
       duration: 2000
     });
     toast.present();
@@ -38,8 +38,12 @@ export class ForgotPasswordPage implements OnInit {
   enviaEmail( forgotForm ) {
     if ( forgotForm.status == "VALID" ) {
       this.authService.enviaEmail(forgotForm.value).subscribe(
-        (res) => {
-          this.presentToast();
+        ( res ) => {
+          this.presentToast("Um email foi enviado para você!");
+          this.router.navigate(['login']);
+        },
+        ( err ) => {
+          this.presentToast("Email não encontrado. Faça seu cadastro.");
           this.router.navigate(['login']);
         }
       );

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CommentCreationPage } from '../../pages/comment-creation/comment-creation.page';
 import { PostsService } from '../../service/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-cards',
@@ -12,7 +13,12 @@ export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
 
-  id: number;
+  idUser: number;
+  idPost: number;
+  image: string;
+  userName: string;
+  userTitle: string;
+  text: string;
   name = 'User';
   defaultImage = '../../assets/default_image/post.jpg ';
   defaultUser = '../../assets/default_image/user.jpg ';
@@ -21,15 +27,18 @@ export class PostsCardsComponent implements OnInit {
 
   constructor(
     private modalControler: ModalController,
-    private postService: PostsService
+    private postService: PostsService,
+    private router: Router
     ) {
       // conseguir pegar o id do card quando crio ele
+
+      // this.idUser = this.cardPost.id_user;
+      // this.idPost = this.cardPost.id_post;
      }
 
   ngOnInit() {
 
   }
-  
 
   async showModalComent() {
     const modal = await this.modalControler.create({
@@ -43,10 +52,15 @@ export class PostsCardsComponent implements OnInit {
   public change() {
     // se ele for verdadeiro gera isso
     // if( se tem imagem content){ return true ;}
+    if (this.image) {
+      return true;
+    }
+
   }
 
   // funcao para redirecionar pagina que da mais info sobre o user
   public userInfo() {
+   // this.router.navigate(['/user-info', {id_user: this.idUser}]);
   }
 
   // funcao fz eu dar like no post
@@ -59,7 +73,11 @@ export class PostsCardsComponent implements OnInit {
 
   // post info
   public postInfo() {
-    console.log('troca');
+    this.router.navigate(['/card-info', {
+      id_user: this.idUser,
+      mensage: 'chegou mensagem '
+    }]);
+
   }
 
 }

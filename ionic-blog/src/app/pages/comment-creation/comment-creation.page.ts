@@ -22,9 +22,9 @@ export class CommentCreationPage implements OnInit {
     public formBuilder: FormBuilder
     ) {
       this.registerForm = this.formBuilder.group({
-        post_id: this.id,
         content: [null, [Validators.required, Validators.minLength(1)]],
-        user_id: [null, [Validators.required, Validators.minLength(1)]]
+        user_id: [null, [Validators.required, Validators.minLength(1)]],
+        post_id: this.id
       });
      }
 
@@ -33,7 +33,7 @@ export class CommentCreationPage implements OnInit {
 
   public postComment(form) {
 
-    if(form.status === 'VALID') {
+    if (form.status === 'VALID') {
       this.commentService.postComments(form.value, this.id).subscribe(
         (res) => {
           console.log(res);
@@ -45,11 +45,6 @@ export class CommentCreationPage implements OnInit {
 
   close() {
     this.modalController.dismiss();
-  }
-
-  submitForm(form) {
-    console.log(form);
-    console.log(form.value);
   }
 
 }

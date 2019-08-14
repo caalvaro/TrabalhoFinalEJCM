@@ -15,12 +15,12 @@ import { AuthService } from './service/auth.service';
 import { PostsService } from './service/posts.service';
 
 import { CommentCreationPage } from './pages/comment-creation/comment-creation.page';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CommentCreationPage],
   entryComponents: [ CommentCreationPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [
     StatusBar,
     SplashScreen,

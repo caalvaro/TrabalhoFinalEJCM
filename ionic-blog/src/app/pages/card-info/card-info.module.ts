@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CardInfoPage } from './card-info.page';
+import { CommentsCardComponent } from '../../components/comments-card/comments-card.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CardInfoPage]
+  declarations: [CardInfoPage, CommentsCardComponent]
 })
 export class CardInfoPageModule {}

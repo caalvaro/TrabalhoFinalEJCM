@@ -14,9 +14,13 @@
       </ion-col>
 
       <ion-col size="8" align-self-center>
-        <h1 class="text">{{infoUsuario.name}}</h1>
+        <h1 class="text"><strong>{{infoUsuario.name}}</strong></h1>
         <br>
         <h6 class="text">{{infoUsuario.email}}</h6>
+        <br>
+        <ion-chip class="ion-no-margin" *ngIf="infoUsuario.isBlogger == 1" color="primary">
+          <ion-label>Blogger</ion-label>
+        </ion-chip>
       </ion-col>
     </ion-row>
 
@@ -29,6 +33,7 @@
     <ion-row *ngIf=" infoUsuario.id != -1">
       <ion-col size="12">
         <a routerLink = "/edit-profile"><ion-button expand="block" routerLinkActive="active"><ion-icon slot="start" name="create"></ion-icon> Editar</ion-button></a>
+        <a routerLink = "/edit-password"><ion-button expand="block" routerLinkActive="active"><ion-icon slot="start" name="create"></ion-icon> Alterar Senha</ion-button></a>
         <ion-button expand="block" color="danger" (click)="deslogarUsuario()"><ion-icon name="log-out"></ion-icon>Sair</ion-button>
       </ion-col>
     </ion-row>

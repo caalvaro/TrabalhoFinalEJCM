@@ -47,4 +47,8 @@ export class AuthService {
     return this.http.get(this.apiUrl + 'getDetails', this.httpHeaders );
   }
 
+  enviaEmail( forgotForm ) {
+    return this.http.post(this.apiUrl + 'updatePassword', forgotForm, this.httpHeaders );
+  }
+
 }

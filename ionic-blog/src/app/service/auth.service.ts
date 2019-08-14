@@ -56,4 +56,9 @@ export class AuthService {
     return this.http.put( this.apiUrl + 'updatePassword', senhaForm, this.httpHeaders );
   }
 
+  editarPerfil( senhaForm ){
+    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
+    return this.http.post( this.apiUrl + 'updateUser', senhaForm, this.httpHeaders );
+  }
+
 }

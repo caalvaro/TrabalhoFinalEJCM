@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 export class EditProfilePage {
 
   form = {
-    name: ''
+    name: '',
+    photo: null
   }
   myPhoto;
 
@@ -57,6 +58,24 @@ export class EditProfilePage {
       },
       (error) => {
         console.log(error);
+      }
+    );
+  }
+
+  async presentToast( message ) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  editarPerfil( perfilForm ) {
+    this.authService.editarPerfil(perfilForm).subscribe(
+      (res) => {
+        //console.log(res);
+        this.presentToast("Perfil editado com sucesso!");
+        this.router.navigate(['tabs/profile']);
       }
     );
   }

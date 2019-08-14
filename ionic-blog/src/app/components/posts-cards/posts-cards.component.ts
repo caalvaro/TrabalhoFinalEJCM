@@ -50,7 +50,7 @@ export class PostsCardsComponent implements OnInit {
 
   // trocar as informacoes de imagem para texto
   public change() {
-    // se ele for verdadeiro gera isso
+  // se ele for verdadeiro gera isso
     // if( se tem imagem content){ return true ;}
     if (this.image) {
       return true;

@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
 
     );
   }
-
+  
   loadData(event){
     const news = this.posts.slice(this.index, this.offset + this.index);
     this.index += this.offset;

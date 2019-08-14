@@ -22,4 +22,19 @@ export class CommentsCardComponent implements OnInit {
 
   ngOnInit() {}
 
+
+  // funcao para redirecionar pagina que da mais info sobre o user
+  public userInfo() {
+    // this.router.navigate(['/user-info', {id_user: this.idUser}]);
+  }
+
+  // funcao fz eu dar like no post
+  public like() {
+  }
+
+  // funcao faz eu ver opcaoes de edicao do post
+  public edit() {
+  }
+
+
 }

@@ -1,11 +1,11 @@
 <ion-header>
   <ion-item>
     
-    <ion-button (click)="close()">
-      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    <ion-button (click)="close()" fill="clear">
+      <ion-icon slot="icon-only" name="arrow-back" ></ion-icon>
     </ion-button>
   
-    <ion-button (click)="postComments()">
+    <ion-button slot="end" fill="outline" (click)="postComments()">
       Comentar
     </ion-button>
 

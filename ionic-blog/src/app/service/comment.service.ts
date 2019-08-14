@@ -19,8 +19,9 @@ export class CommentService {
 
   constructor(public http: HttpClient) { }
 
-  // get all comments  
-  public getAllComment() {
+  // get all comments
+  public getAllComment(id): Observable<any>{
+    return this.http.get(this.backendURL + '/postComments' + id);
   }
 
   // encontrar um comentario
@@ -43,4 +44,10 @@ export class CommentService {
   public postComments(form , id): Observable<any> {
      return this.http.post(this.backendURL + 'createComment/' + id, form, this.httpHeaders);
   }
+
+  // dar like no comentario
+  public postLike(id){
+    return this.http.get(this.backendURL + 'likeComment/');
+  }
+
 }

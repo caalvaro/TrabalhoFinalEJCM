@@ -6,12 +6,12 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="explore">
+    <!-- <ion-tab-button tab="explore">
       <ion-icon name="search"></ion-icon>
       <ion-label>Explore</ion-label>
-    </ion-tab-button>
+    </ion-tab-button> -->
 
-    <ion-tab-button tab="posting">
+    <ion-tab-button *ngIf="infoUsuario.isBlogger == 1" tab="posting">
       <ion-icon name="add"></ion-icon>
       <ion-label>Posting</ion-label>
     </ion-tab-button>

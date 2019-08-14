@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+  
+      <ion-button fill = "clear" (click) = "close()">
+        <ion-icon slot="icon-only" name="arrow-back" ></ion-icon>
+      </ion-button>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card">
+  
+    <ion-card-header class="post-header">
+      <ion-toolbar class="toolbar">
+  
+        <a slot='start' class="item-avatar" (click)="userInfo()">
+          <img src="{{defaultUser}}" class="avatar-iamge">
+        </a>
+  
+        <ion-card-subtitle class="post-name">{{name}}</ion-card-subtitle>
+  
+        <ion-button slot="end" class="more-icon" color="white" fill="clear" (click)="edit()">
+          <ion-icon name="more"></ion-icon>
+        </ion-button>
+  
+      </ion-toolbar>
+  
+      <ion-card-title class="post-title" >{{postTitle}}</ion-card-title>
+  
+    </ion-card-header>
+  
+    <ion-card-content class="content">
+      <img src="{{defaultImage}}" class="post-image">
+      <p class="text-content">{{mainText}}</p>
+    </ion-card-content>
+  
+    <ion-item class="post-footer">
+
+      <ion-button fill="clear" (click)="like()">
+        <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
+      </ion-button>
+  
+      <ion-button class="comentario" fill="outline" slot="end" (click)="showModalComent()" [id]="id">
+        <p>Comentario</p>
+      </ion-button>
+  
+    </ion-item>
+
+    <!--card comment-->
+    <!--utlizar o ngIf no card para caso tenha um comment-->
+    <ion-list >
+      <app-comments-card></app-comments-card>
+      <app-comments-card *ngFor="let cooment of commentCards" ></app-comments-card>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+  </ion-card>
+</ion-content>

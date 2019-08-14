@@ -22,7 +22,7 @@
         padding-left: 10px;  
         height:35px ;
         width: auto;
-    
+        cursor: pointer;
     }
 
     .post-title{
@@ -34,7 +34,6 @@
         border-style: solid;
         border-width: 0px 0px 1px 0px;
         border-color:lightgray;
-        cursor: pointer;
     
     }
     
@@ -50,9 +49,9 @@
 
 .post-footer{
 
-
+    --border-color:transparent;
     border-style: solid;
-    border-width: 1px 0px 0px 0px;
+    border-width: 1px 0px 1px 0px;
     border-color:lightgray;
 }
 
@@ -67,3 +66,4 @@
 .text-content{
     margin-top:2vh;
 }
+

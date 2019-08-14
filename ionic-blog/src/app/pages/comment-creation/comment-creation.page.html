@@ -1,9 +1,47 @@
 <ion-header>
-  <ion-button (click)="close()">
-    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-  </ion-button>
+  <ion-item>
+    
+    <ion-button (click)="close()" fill="clear">
+      <ion-icon slot="icon-only" name="arrow-back" ></ion-icon>
+    </ion-button>
+  
+    <ion-button slot="end" fill="outline" (click)="postComments()">
+      Comentar
+    </ion-button>
+
+  </ion-item>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="registerForm">
+    
+    <ion-item >
+      <ion-label>Comentario</ion-label>
+      <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." formControlName = "content"></ion-textarea>
+    </ion-item>
+
+  </form>
+
+  <!-- caso sobre tempo para inplementacao de imagem no comentario -->
+
+      <!-- <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+        <ion-fab-button color="dark">
+          <ion-icon name="arrow-dropup"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button color="light">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light">
+            <ion-icon name="logo-vimeo"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light">
+            <ion-icon name="logo-google"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab> -->
 
 </ion-content>

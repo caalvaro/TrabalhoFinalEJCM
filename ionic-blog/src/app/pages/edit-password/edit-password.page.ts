@@ -18,8 +18,7 @@ export class EditPasswordPage implements OnInit {
   constructor( public formbuilder: FormBuilder, public authService: AuthService,  public router: Router,
     public toastController: ToastController ) {
       this.senhaForm = this.formbuilder.group({
-        name: ['', [Validators.required, Validators.minLength(3)]],
-        email: ['', [Validators.required, Validators.email]],
+        atual_password: ['', [Validators.required, Validators.minLength(6)]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         c_password: ['', [Validators.required, Validators.minLength(6)]]
       });

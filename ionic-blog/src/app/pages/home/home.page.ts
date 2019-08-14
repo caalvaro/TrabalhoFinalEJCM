@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
 
   posts: any = [];
   postPage: any = [];
+  size: number;
   private readonly offset = 5;
   private index = 0;
 
@@ -22,13 +23,16 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+    this.postConstruct(this.posts);
+    console.log(this.size + ' este eh o tamanho');
   }
 
-  postConstruct(id) {
-    this.postService.getPost(id).subscribe(
+  postConstruct(posts) {
+    this.postService.getAllPosts().subscribe(
       (res) => {
         console.log(res);
-        this.posts.push(res);
+        posts.push(res);
+        this.size = posts.length;
       },
       (error) => {
         console.log();
@@ -38,20 +42,18 @@ export class HomePage implements OnInit {
   }
 
   loadData(event){
-    let news = this.posts.slice(this.index, this.offset + this.index);
+    const news = this.posts.slice(this.index, this.offset + this.index);
     this.index += this.offset;
 
-    for(let i = 0 ; i<= news.length;i++){
+    for(let i = 0 ; i <= news.length; i++){
       this.postPage.push(news[i]);
     }
 
     event.target.complete();
 
-
-    // caso ele seja maior que todos os itens dentro da lista ele tem que parar
-    // if(this.postPage.length == ){
-          event.target.disabled = true;
-    // }
+    if ( this.postPage.length === this.size) {
+         event.target.disabled = true;
+    }
 
 
   }

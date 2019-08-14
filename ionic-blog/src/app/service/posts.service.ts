@@ -29,10 +29,10 @@ export class PostsService {
   }
 
   public postPosts( post ):Observable<any> {
-    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
+    this.httpHeaders.headers.Authorization = 'Bearer ' + localStorage.getItem('userToken');
     
     return this.http.post( this.backendURL + 'createPost/', {
-      'content': post.content,
+      content: post.content,
       'photo': post.photo,
     }, this.httpHeaders);
   }

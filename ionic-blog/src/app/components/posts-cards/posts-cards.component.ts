@@ -12,6 +12,7 @@ export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
 
+  id: number;
   name = 'User';
   defaultImage = '../../assets/default_image/post.jpg ';
   defaultUser = '../../assets/default_image/user.jpg ';
@@ -21,11 +22,14 @@ export class PostsCardsComponent implements OnInit {
   constructor(
     private modalControler: ModalController,
     private postService: PostsService
-    ) { }
+    ) {
+      // conseguir pegar o id do card quando crio ele
+     }
 
-  ngOnInit() { }
+  ngOnInit() {
 
-  // construir um post
+  }
+  
 
   async showModalComent() {
     const modal = await this.modalControler.create({
@@ -51,6 +55,11 @@ export class PostsCardsComponent implements OnInit {
 
   // funcao faz eu ver opcaoes de edicao do post
   public edit() {
+  }
+
+  // post info
+  public postInfo() {
+    console.log('troca');
   }
 
 }

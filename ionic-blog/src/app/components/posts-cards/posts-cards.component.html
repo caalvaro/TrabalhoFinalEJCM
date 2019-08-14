@@ -7,7 +7,7 @@
         <img src="{{defaultUser}}" class="avatar-iamge" >
       </a>
 
-      <ion-card-subtitle class="post-name">{{name}}</ion-card-subtitle>
+      <ion-card-subtitle class="post-name" >{{name}}</ion-card-subtitle>
 
       <ion-button slot="end" class="more-icon" color="white" fill="clear" (click) = "edit()">
         <ion-icon name="more"></ion-icon>
@@ -15,7 +15,7 @@
 
     </ion-toolbar>
 
-    <ion-card-title class="post-title"> {{postTitle}}</ion-card-title>
+    <ion-card-title class="post-title" (click) = "postInfo()"> {{postTitle}}</ion-card-title>
 
   </ion-card-header>
 
@@ -29,7 +29,7 @@
       <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
     </ion-button>
 
-    <ion-button class="comentario" fill="outline" slot="end" (click) = "showModalComent()">
+    <ion-button class="comentario" fill="outline" slot="end" (click) = "showModalComent()" [id] = "id">
       <p>Comentario</p>
     </ion-button>
 

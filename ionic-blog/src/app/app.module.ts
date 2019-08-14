@@ -16,6 +16,7 @@ import { PostsService } from './service/posts.service';
 
 import { CommentCreationPage } from './pages/comment-creation/comment-creation.page';
 
+
 @NgModule({
   declarations: [AppComponent, CommentCreationPage],
   entryComponents: [ CommentCreationPage],

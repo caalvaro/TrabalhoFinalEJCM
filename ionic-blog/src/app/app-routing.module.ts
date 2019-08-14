@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'comment-creation', loadChildren: './pages/comment-creation/comment-creation.module#CommentCreationPageModule' },  { path: 'edit-profile', loadChildren: './pages/edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'edit-password', loadChildren: './pages/edit-password/edit-password.module#EditPasswordPageModule' },
-  { path: 'forgot-password', loadChildren: './pages/forgot-password/forgot-password.module#ForgotPasswordPageModule' }
+  { path: 'forgot-password', loadChildren: './pages/forgot-password/forgot-password.module#ForgotPasswordPageModule' },
+  { path: 'card-info', loadChildren: './pages/card-info/card-info.module#CardInfoPageModule' }
 
 ];
 @NgModule({

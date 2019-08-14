@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { CommentService } from '../../service/comment.service';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-comment-creation',
@@ -8,13 +12,44 @@ import { ModalController } from '@ionic/angular';
 })
 export class CommentCreationPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  @Input() id;
+  registerForm: FormGroup;
+
+  constructor(
+    private modalController: ModalController,
+    private commentService: CommentService,
+    public router: Router,
+    public formBuilder: FormBuilder
+    ) {
+      this.registerForm = this.formBuilder.group({
+        post_id: this.id,
+        content: [null, [Validators.required, Validators.minLength(1)]],
+        user_id: [null, [Validators.required, Validators.minLength(1)]]
+      });
+     }
 
   ngOnInit() {
   }
 
+  public postComment(form) {
+
+    if(form.status === 'VALID') {
+      this.commentService.postComments(form.value, this.id).subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigate(['/login']);
+        }
+      )
+    }
+  }
+
   close() {
     this.modalController.dismiss();
+  }
+
+  submitForm(form) {
+    console.log(form);
+    console.log(form.value);
   }
 
 }

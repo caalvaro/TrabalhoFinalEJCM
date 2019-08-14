@@ -25,6 +25,15 @@ Route::get('getDetails', 'API\PassportController@getDetails');
 //User
 Route::get('listUser', 'UserController@listUser');
 
+//PasswordReset
+Route::post('passwordReset','UserController@passwordReset');
+Route::get('passwordResetConfirm/{token}','UserController@passwordResetConfirm');
+Route::get('passwordResetCancel/{token}','UserController@passwordResetCancel');
+
+
+
+
+
 //Posts
 Route::get('userPosts', 'PostController@showUserPosts');
 Route::get('allPost', 'PostController@listPost');
@@ -37,6 +46,7 @@ Route::get('findComment/{id}','CommentController@findComment');
 Route::get('userComments', 'CommentController@showUserComments');
 Route::get('postComments/{id}', 'CommentController@showPostComments');
 Route::get('showLikes/{id}', 'CommentController@showLikes');
+
 
 
 

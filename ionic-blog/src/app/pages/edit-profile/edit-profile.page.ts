@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
-import { PostsService } from '../../service/posts.service';
+import { AuthService } from '../../service/auth.service';
 
 import { Router } from '@angular/router';
 
@@ -14,20 +13,32 @@ import { Router } from '@angular/router';
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
-export class EditProfilePage implements OnInit {
+export class EditProfilePage {
 
-  perfilForm: FormGroup;
+  form = {
+    name: ''
+  }
   myPhoto;
 
-  constructor( public formbuilder: FormBuilder, public postsService: PostsService, 
-    public router: Router, public toastController: ToastController, private camera: Camera ) {
-      this.perfilForm = this.formbuilder.group({
-        nome: ['', [Validators.required, Validators.minLength(3)]],
-        photo: ['ionic-blog\\src\\assets\\icon\\user.png', []]
-      });
+  constructor(  public authService: AuthService, public router: Router, public toastController: ToastController, private camera: Camera ) {
+      
   }
 
-  ngOnInit() {
+  ionViewDidEnter () {
+    if (localStorage.getItem('userToken') != null) {
+      this.authService.getInfoUsuario().subscribe(
+        (res) => {
+          this.form.name = res.success.name;
+          
+          if (res.success.photo == null) {
+            this.myPhoto = '..\\..\\..\\assets\\icon\\user.png';
+          }
+          else {
+            this.myPhoto = res.success.photo;
+          }
+        }
+      );
+    }
   }
 
   openGallery() {
@@ -41,7 +52,7 @@ export class EditProfilePage implements OnInit {
     this.camera.getPicture(options).then(
       (imageData) => {
         this.myPhoto = 'data:image/jpeg;base64,' + imageData;
-        this.perfilForm.value.photo = this.myPhoto;
+        this.form['photo'] = this.myPhoto;
         console.log('data:image/jpeg;base64,' + imageData);
       },
       (error) => {

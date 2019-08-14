@@ -48,7 +48,12 @@ export class AuthService {
   }
 
   enviaEmail( forgotForm ) {
-    return this.http.post(this.apiUrl + 'updatePassword', forgotForm, this.httpHeaders );
+    return this.http.post(this.apiUrl + 'enviaEmail', forgotForm, this.httpHeaders );
+  }
+
+  mudarSenha( senhaForm ){
+    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
+    return this.http.put( this.apiUrl + 'updatePassword', senhaForm, this.httpHeaders );
   }
 
 }

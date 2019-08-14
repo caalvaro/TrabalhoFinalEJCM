@@ -19,7 +19,7 @@ export class ProfilePage {
   
   constructor(public router: Router, public authService: AuthService) { }
 
-  ionViewDidEnter () {
+  ionViewWillEnter () {
     if (localStorage.getItem('userToken') != null) {
       this.getInfoUsuario();
     }

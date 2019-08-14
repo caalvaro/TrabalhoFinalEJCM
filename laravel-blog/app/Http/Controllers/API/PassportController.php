@@ -16,6 +16,7 @@ class PassportController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $success['token'] = $user-> createToken('MyApp')->accessToken;
+            $success['id'] = $user->id;
             return response()->json(['success' => $success],$this->successStatus);
         }
         else {
@@ -39,7 +40,7 @@ class PassportController extends Controller
         $newUser->password = bcrypt($request->password);
         $newUser->save();
         $success['token'] = $newUser->createToken('MyApp')->accessToken;
-        $success['name'] = $newUser-> name;
+        $success['id'] = $newUser-> id;
         return response()->json(['success' => $success], $this->successStatus);
     }
     public function getDetails() {

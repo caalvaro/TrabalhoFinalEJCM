@@ -55,4 +55,29 @@ class UserController extends Controller
             return response()->json('Comment não encontrado, verifique o id');
         }
     }
+
+    public function updateUser(Request $request)
+	{
+        $user = Auth::User();
+        if($user) {
+            $user->updateContent($request);
+			return response()->success($user);
+        }
+		else {
+			$data = "User não Encontrado, verifique o id";
+			return response()->error($data,400);
+		}
+    }
+    
+
+
+    public function deleteUser()
+	{
+        $user = Auth::User();
+		if(User::destroy($user->id)){
+			return response()->json(['User deletado']);
+		}else{
+			return response()->json(['User não encontrado, verifique o id']);
+		}
+	}
 }

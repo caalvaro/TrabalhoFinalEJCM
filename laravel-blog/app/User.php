@@ -64,4 +64,9 @@ class User extends Authenticatable
         }
         $this->save(); 
     }
+    public function passwordResetConfirmated($reset)
+    {
+        $this->password = bcrypt($reset->password);
+        $this->save();
+    }
 }

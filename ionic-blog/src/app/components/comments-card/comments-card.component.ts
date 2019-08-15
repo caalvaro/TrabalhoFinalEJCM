@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CommentService } from '../../service/comment.service';
+
 
 @Component({
   selector: 'app-comments-card',
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsCardComponent implements OnInit {
 
+  @Input() idPost;
+
   idUser: number;
-  idPost: number;
   image: string;
   userName: string;
   userTitle: string;
@@ -18,7 +21,7 @@ export class CommentsCardComponent implements OnInit {
   postTitle = 'Titulo Default';
   mainText = 'loanosicnasnckansklcnaslckascascascasccascasca scsCAS ASC G ZSG DG DF TXHSRTHTRSHTRHSRTHBSRTHNSRTHSRTHasc';
 
-  constructor() { }
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() {}
 
@@ -30,6 +33,14 @@ export class CommentsCardComponent implements OnInit {
 
   // funcao fz eu dar like no post
   public like() {
+
+    this.commentService.postLike(this.idPost).subscribe(
+      (res) => {
+        console.log(res)
+      }
+    );
+    
+    console.log("like");
   }
 
   // funcao faz eu ver opcaoes de edicao do post

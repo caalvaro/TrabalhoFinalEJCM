@@ -33,13 +33,14 @@ export class CommentCreationPage implements OnInit {
 
   public postComment(form) {
 
+    // comentar caso der ruim mudar para outra pagina
     if (form.status === 'VALID') {
       this.commentService.postComments(form.value, this.id).subscribe(
         (res) => {
           console.log(res);
           this.router.navigate(['/login']);
         }
-      )
+      );
     }
   }
 

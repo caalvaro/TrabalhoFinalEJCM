@@ -37,7 +37,7 @@
   
     <ion-item class="post-footer">
 
-      <ion-button fill="clear" (click)="like()">
+      <ion-button fill="clear" >
         <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
       </ion-button>
   
@@ -51,7 +51,7 @@
     <!--utlizar o ngIf no card para caso tenha um comment-->
     <ion-list >
       <app-comments-card></app-comments-card>
-      <app-comments-card *ngFor="let cooment of commentCards" ></app-comments-card>
+      <app-comments-card *ngFor="let cooment of commentCards" [idPost] = "comment" ></app-comments-card>
     </ion-list>
     <ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadData($event)">
       <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">

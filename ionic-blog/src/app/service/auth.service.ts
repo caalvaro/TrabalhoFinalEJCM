@@ -53,12 +53,12 @@ export class AuthService {
 
   mudarSenha( senhaForm ){
     this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-    return this.http.post( this.apiUrl + 'passwordResetConfirm', senhaForm, this.httpHeaders );
+    return this.http.put( this.apiUrl + 'passwordChange', senhaForm, this.httpHeaders );
   }
 
-  editarPerfil( senhaForm ){
+  editarPerfil( editForm ){
     this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-    return this.http.post( this.apiUrl + 'updateUser', senhaForm, this.httpHeaders );
+    return this.http.post( this.apiUrl + 'updateUser', editForm, this.httpHeaders );
   }
 
 }

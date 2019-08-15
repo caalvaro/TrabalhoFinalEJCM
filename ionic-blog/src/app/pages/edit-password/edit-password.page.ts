@@ -18,18 +18,18 @@ export class EditPasswordPage implements OnInit {
   constructor( public formbuilder: FormBuilder, public authService: AuthService,  public router: Router,
     public toastController: ToastController ) {
       this.senhaForm = this.formbuilder.group({
-        atual_password: ['', [Validators.required, Validators.minLength(6)]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        c_password: ['', [Validators.required, Validators.minLength(6)]]
+        new_password: ['', [Validators.required, Validators.minLength(6)]],
+        c_new_password: ['', [Validators.required, Validators.minLength(6)]]
       });
     }
 
   ngOnInit() {
   }
 
-  async presentToast() {
+  async presentToast( message ) {
     const toast = await this.toastController.create({
-      message: 'Senha alterada com sucesso',
+      message: message,
       duration: 2000
     });
     toast.present();
@@ -41,8 +41,12 @@ export class EditPasswordPage implements OnInit {
       this.authService.mudarSenha( senhaForm.value ).subscribe(
         ( res ) => {
           console.log( res );
-          this.presentToast();
+          this.presentToast('Senha alterada com sucesso');
           this.router.navigate(['tabs/home']);
+        },
+        ( err ) => {
+          console.log(err);
+          this.presentToast('Não foi possível alterar a senha. Tente novamente.');
         }
       );
     }

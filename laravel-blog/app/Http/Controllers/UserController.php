@@ -17,6 +17,18 @@ class UserController extends Controller
         $users = User::all();
         return response()->success($users);
     }
+
+    public function findUser($id)
+	{
+		$user = User::find($id);
+		if($user){
+			return response()->success($user);
+		}else{
+			$data = "User não encontrado, verifique o id";
+			return response()->error($data,400);
+		}
+    }
+    
     public function likeComment($comment_id)
     {
         $user = Auth::User();
@@ -57,7 +69,22 @@ class UserController extends Controller
             return response()->json('Comment não encontrado, verifique o id');
         }
     }
-
+    public function showPhoto($id)
+    {
+        $user = User::find($id);
+        if($user) {
+            if($user->photo)
+            {
+                return response()->download($user->photo);
+            }
+            else {
+                return response()->error(['User não possui foto.']);
+            }
+        }
+        else {
+            return response()->error(['User não encontrado, favor verifique o id']);
+        }
+    }
     public function updateUser(Request $request)
 	{
         $user = Auth::User();

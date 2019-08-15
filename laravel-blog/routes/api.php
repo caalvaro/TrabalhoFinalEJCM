@@ -20,8 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
 
-Route::get('getDetails', 'API\PassportController@getDetails');
-
 //User
 Route::get('listUser', 'UserController@listUser');
 
@@ -56,6 +54,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('logout', 'API\PassportController@logout');
     Route::get('likeComment/{id}', 'UserController@likeComment');
     Route::get('unlikeComment/{id}', 'UserController@unlikeComment');
+    Route::get('getDetails', 'API\PassportController@getDetails');
     
     //User
 //form-data do postman nao trabalha com PUT, por isso updateUser está como POST

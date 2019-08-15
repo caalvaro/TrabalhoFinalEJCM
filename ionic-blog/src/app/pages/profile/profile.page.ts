@@ -11,15 +11,18 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage {
 
-  infoUsuario: any = {'email': "user@name.com",
-                      'id': -1,
-                      'isBlogger': 0,
-                      'name': "Username",
-                      'photo': '..\\..\\..\\assets\\icon\\user.png'};
+  infoUsuario: any;
   
-  constructor(public router: Router, public authService: AuthService) { }
+  constructor(public router: Router, public authService: AuthService) { 
+    this.infoUsuario = {'email': "user@name.com",
+    'id': -1,
+    'isBlogger': 0,
+    'name': "Username",
+    'photo': '..\\..\\..\\assets\\icon\\user.png'};
+  }
 
   ionViewWillEnter () {
+    console.log("entrou aaaaaaa");
     if (localStorage.getItem('userToken') != null) {
       this.getInfoUsuario();
     }

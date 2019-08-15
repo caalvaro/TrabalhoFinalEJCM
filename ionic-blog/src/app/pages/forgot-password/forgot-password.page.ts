@@ -36,15 +36,18 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   enviaEmail( forgotForm ) {
+    console.log(forgotForm);
     if ( forgotForm.status == "VALID" ) {
       this.authService.enviaEmail(forgotForm.value).subscribe(
         ( res ) => {
+          console.log(res);
           this.presentToast("Um email foi enviado para você!");
           this.router.navigate(['login']);
         },
         ( err ) => {
+          console.log(err);
           this.presentToast("Email não encontrado. Faça seu cadastro.");
-          this.router.navigate(['login']);
+          this.router.navigate(['register']);
         }
       );
     }

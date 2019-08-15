@@ -20,15 +20,15 @@
   </ion-card-header>
 
   <ion-card-content class ="content">
-    <p  *ngIf="change()" class="text-content">{{mainText}}</p>
-    <img src="{{defaultImage}}" class="post-image" >
+    <p  *ngIf="change()" class="text-content">{{cardPost.content}}</p>
+    <img src="{{cardPost.photo}}" class="post-image" >
   </ion-card-content>
 
   <ion-item class="post-footer">
     <!--fazer like -->
-    <ion-button fill="clear" >
+    <!-- <ion-button fill="clear" >
       <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
-    </ion-button>
+    </ion-button> -->
 
     <ion-button class="comentario" fill="outline" slot="end" (click) = "showModalComent()" [id] = "id">
       <p>Comentario</p>

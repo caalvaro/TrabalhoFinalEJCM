@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { CommentCreationPage } from '../../pages/comment-creation/comment-creation.page';
 import { PostsService } from '../../service/posts.service';
 import { Router } from '@angular/router';
@@ -14,13 +14,6 @@ export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
 
-  post;
-  idUser: number;
-  idPost: number;
-  image: string;
-  userName: string;
-  userTitle: string;
-  text: string;
 
   name = 'User';
   defaultImage = '../../assets/default_image/post.jpg ';
@@ -31,7 +24,8 @@ export class PostsCardsComponent implements OnInit {
   constructor(
     private modalControler: ModalController,
     private postService: PostsService,
-    private router: Router
+    private router: Router,
+    private navCont: NavController
     ) {
       // conseguir pegar o id do card quando crio ele
 
@@ -42,21 +36,11 @@ export class PostsCardsComponent implements OnInit {
      }
 
   ngOnInit() {
-
+    console.log('mensagem')
+    console.log(this.cardPost);
   }
 
-  public getPost() {
-    this.post = this.postService.getPost(this.cardPost.id).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-
-  }
+ 
 
   async showModalComent() {
     const modal = await this.modalControler.create({
@@ -68,7 +52,7 @@ export class PostsCardsComponent implements OnInit {
 
   // trocar as informacoes de imagem para texto
   public change() {
-    if (this.image) {
+    if (this.cardPost.photo === null) {
       return true;
     }
   }
@@ -84,11 +68,13 @@ export class PostsCardsComponent implements OnInit {
 
   // post info
   public postInfo() {
+    console.log('antes de navegar pra roxima pagin');
+    console.log(this.cardPost.user_id);
     this.router.navigate(['/card-info', {
-      id_user: this.idUser,
-      mensage: 'chegou mensagem '
+      id_user: this.cardPost.user_id,
+      id: this.cardPost.id,
+      mensagen: 'chegou mensagem'
     }]);
-
   }
 
 }

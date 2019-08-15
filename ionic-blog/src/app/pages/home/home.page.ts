@@ -18,49 +18,52 @@ export class HomePage implements OnInit {
 
   constructor(private postService: PostsService) {
     this.postConstruct();
+    console.log(this.posts.lenght);
+    if (this.size >= 5) {
+      this.postPage = this.posts.slice(this.index, this.offset + this.index);
+      this.index += this.offset;
+    }
     console.log(this.size);
-    console.log(this.posts);
-    // this.posts = this.postConstruct(this.posts);
-    this.postPage = this.posts.slice(this.index, this.offset + this.index);
-    console.log(this.postPage);
-    this.index += this.offset;
   }
 
   ngOnInit() {
   }
 
   public postConstruct() {
-    this.postService.getAllPosts().subscribe(
+   this.postService.getAllPosts().subscribe(
       (res) => {
-        console.log(res);
-        this.posts.push(res);
+        this.posts = res;
         console.log(this.posts);
-        this.size = res.length;
-        console.log(this.size);
+
       },
       (error) => {
         console.log(error);
       }
-      
     );
   }
-
   loadData(event) {
-    const news = this.posts.slice(this.index, this.offset + this.index);
-    this.index += this.offset;
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
 
-    for(let i = 0 ; i <= news.length; i++){
-      this.postPage.push(news[i]);
-    }
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.posts === this.size) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
 
-    event.target.complete();
-
-    if ( this.postPage.length === this.size) {
-         event.target.disabled = true;
-    }
+  public getPost(id) {
+    this.postService.getPost(id).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
 
   }
-
-
 }

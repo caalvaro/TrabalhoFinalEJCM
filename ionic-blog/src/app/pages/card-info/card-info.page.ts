@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommentService } from '../../service/comment.service';
 import { ModalController } from '@ionic/angular';
 import { CommentCreationPage } from '../../pages/comment-creation/comment-creation.page';
+import { PostsService } from '../../service/posts.service';
 
 @Component({
   selector: 'app-card-info',
@@ -12,21 +13,11 @@ import { CommentCreationPage } from '../../pages/comment-creation/comment-creati
 })
 export class CardInfoPage implements OnInit {
 
-  foo = 'mensagem';
-  sub;
   id;
+  idUser;
   mensage;
-  idUser: number;
-  idPost: number;
-  image: string;
-  userName: string;
-  userTitle: string;
-  text: string;
-  name = 'User';
-  defaultImage = '../../assets/default_image/post.jpg ';
-  defaultUser = '../../assets/default_image/user.jpg ';
-  postTitle = 'Titulo Default';
-  mainText = 'loanosicnasnckansklcnaslckascascascasccascasca scsCAS ASC G ZSG DG DF TXHSRTHTRSHTRHSRTHBSRTHNSRTHSRTHasc';
+  post: any = [];
+
   comments: any = [];
   commentCards: any = [];
   size: number;
@@ -38,17 +29,23 @@ export class CardInfoPage implements OnInit {
     private route: Router,
     private commentService: CommentService,
     private modalControler: ModalController,
+    private postsService: PostsService
     ) {
-    this.id = this.aRoute.snapshot.paramMap.get('id_user');
-    this.mensage = this.aRoute.snapshot.paramMap.get('mensage');
-    this.commentCards = this.comments.slice(this.index, this.offset + this.index);
-    this.index += this.offset;
-    console.log(this.mensage);
 
   }
 
   ngOnInit() {
-    this.commentConstruct(this.comments);
+    this.idUser = this.aRoute.snapshot.paramMap.get('id_user');
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+    this.mensage = this.aRoute.snapshot.paramMap.get('mensagen');
+    this.getPost();
+    this.commentConstruct();
+    console.log(this.id);
+    this.commentCards = this.comments.slice(this.index, this.offset + this.index);
+    this.index += this.offset;
+    console.log(this.commentCards);
+    console.log(this.mensage);
+
 
   }
 
@@ -62,22 +59,24 @@ export class CardInfoPage implements OnInit {
 
 
 
-  commentConstruct(comments) {
+  commentConstruct() {
     this.commentService.getAllComment(this.id).subscribe(
       (res) => {
         console.log(res);
-        comments.push(res);
-        this.size = comments.length;
+        this.comments = res.data;
+        console.log('mostrando o comments');
+        console.log(this.comments);
+        this.size = this.comments.length;
+
       },
       (error) => {
-        console.log();
+        console.log(error);
       }
-
     );
   }
 
 
-  public close(){
+  public close() {
     this.route.navigate(['/tabs/home']);
   }
 
@@ -98,6 +97,37 @@ export class CardInfoPage implements OnInit {
 
   }
 
+  // criar post
+  public getPost() {
+    this.postsService.getPost(this.id).subscribe(
+      (res) => {
+        this.post = res.data;
+        console.log('opa pegou a info do post');
+        console.log(this.post);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
+  }
 
+  // mostrar caso tenha comments
+  public commentsIf() {
+    if(this.comments === null || this.comments === undefined) {
+      return false;
+    } else{ return true; }
+
+  }
+
+  // trocar imagem por texto
+  public change() {
+    if (this.post.photo === null) {
+      return true;
+    }
+  }
+
+  // adquirir info do usuario como imagem e nome
+  public getUser() {
+  }
 }

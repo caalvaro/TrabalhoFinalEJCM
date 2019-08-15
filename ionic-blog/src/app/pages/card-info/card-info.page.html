@@ -14,11 +14,12 @@
     <ion-card-header class="post-header">
       <ion-toolbar class="toolbar">
   
-        <a slot='start' class="item-avatar" (click)="userInfo()">
-          <img src="{{defaultUser}}" class="avatar-iamge">
+        <!-- user info no <a> -->
+        <a slot='start' class="item-avatar" >
+          <img src="#" class="avatar-iamge">
         </a>
   
-        <ion-card-subtitle class="post-name">{{name}}</ion-card-subtitle>
+        <ion-card-subtitle class="post-name">{{id}}</ion-card-subtitle>
   
         <ion-button slot="end" class="more-icon" color="white" fill="clear" (click)="edit()">
           <ion-icon name="more"></ion-icon>
@@ -26,21 +27,21 @@
   
       </ion-toolbar>
   
-      <ion-card-title class="post-title" >{{postTitle}}</ion-card-title>
+      <ion-card-title class="post-title" ></ion-card-title>
   
     </ion-card-header>
   
     <ion-card-content class="content">
-      <img src="{{defaultImage}}" class="post-image">
-      <p class="text-content">{{mainText}}</p>
+      <img src="{{post.photo}}" class="post-image">
+      <p class="text-content" *ngIf= "change()">{{post.content}}</p> 
     </ion-card-content>
   
     <ion-item class="post-footer">
 
-      <ion-button fill="clear" >
+      <!-- <ion-button fill="clear" >
         <ion-icon slot="icon-only" name="thumbs-up"></ion-icon>
       </ion-button>
-  
+   -->
       <ion-button class="comentario" fill="outline" slot="end" (click)="showModalComent()" [id]="id">
         <p>Comentario</p>
       </ion-button>
@@ -49,7 +50,7 @@
 
     <!--card comment-->
     <!--utlizar o ngIf no card para caso tenha um comment-->
-    <ion-list >
+    <ion-list *ngIf = "!commentsIf()">
       <app-comments-card></app-comments-card>
       <app-comments-card *ngFor="let cooment of commentCards" [idPost] = "comment" ></app-comments-card>
     </ion-list>

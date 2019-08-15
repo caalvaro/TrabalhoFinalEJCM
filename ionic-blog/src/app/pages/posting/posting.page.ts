@@ -6,6 +6,7 @@ import { ToastController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { PostsService } from '../../service/posts.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 import { Router } from '@angular/router';
 
@@ -19,12 +20,33 @@ export class PostingPage implements OnInit {
   postForm: FormGroup;
   myPhoto;
 
+  infoUsuario: any;
+
   constructor( public formbuilder: FormBuilder, public postsService: PostsService, 
-    public router: Router, public toastController: ToastController, private camera: Camera ) {
+    public router: Router, public toastController: ToastController, private camera: Camera, public authService: AuthService ) {
       this.postForm = this.formbuilder.group({
         content: ['', [Validators.required]],
         photo: ['', []]
       });
+      this.infoUsuario = {'email': "user@name.com",
+                          'id': -1,
+                          'isBlogger': 0,
+                          'name': "Username",
+                          'photo': '..\\..\\..\\assets\\icon\\user.png'};
+  }
+
+  ionViewWillEnter () {
+    if (localStorage.getItem('userToken') != null) {
+      this.authService.getInfoUsuario().subscribe(
+        (res) => {
+          this.infoUsuario = res.success;
+          if (res.success.photo == null) {
+            this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
+          }
+          console.log(this.infoUsuario);
+        }
+      );
+    }
   }
 
   ngOnInit() {

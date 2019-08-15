@@ -65,9 +65,11 @@ class User extends Authenticatable
             {
                 Storage::delete(‘localPhotos/’. $this->photo);
             }
-            $file = $request->file('photo');
-            $path = $file->store('localPhotos');
-            $this->photo = $path;
+            $image = base64_decode($request->photo);
+            $imgName = uniqid().'.png';
+            $path = storage_path('/app/localPhotos/'.$imgname);
+            file_put_contents($path,$image);
+            $this->photo = $imgName;
         }
         $this->save(); 
     }

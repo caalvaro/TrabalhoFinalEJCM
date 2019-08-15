@@ -28,23 +28,7 @@ class UserController extends Controller
 			return response()->error($data,400);
 		}
     }
-    
-    public function showPhoto($id)
-    {
-        $user = User::find($id);
-        if($user) {
-            if($user->photo)
-            {
-                return response()->download($user->photo);
-            }
-            else {
-                return response()->error(['User não possui foto.']);
-            }
-        }
-        else {
-            return response()->error(['User não encontrado, favor verifique o id']);
-        }
-    }
+
     public function updateUser(Request $request)
 	{
         $user = Auth::User();

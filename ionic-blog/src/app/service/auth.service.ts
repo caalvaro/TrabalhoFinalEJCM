@@ -53,7 +53,7 @@ export class AuthService {
 
   mudarSenha( senhaForm ){
     this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-    return this.http.get( this.apiUrl + 'passwordResetConfirm', senhaForm, this.httpHeaders );
+    return this.http.get( this.apiUrl + 'passwordResetConfirm' + senhaForm, this.httpHeaders );
   }
 
   editarPerfil( senhaForm ){

@@ -17,31 +17,35 @@ export class HomePage implements OnInit {
   private index = 0;
 
   constructor(private postService: PostsService) {
-    // this.posts = postConstruct();
+    this.postConstruct();
+    console.log(this.size);
+    console.log(this.posts);
+    // this.posts = this.postConstruct(this.posts);
     this.postPage = this.posts.slice(this.index, this.offset + this.index);
+    console.log(this.postPage);
     this.index += this.offset;
   }
 
   ngOnInit() {
-    this.postConstruct(this.posts);
-    console.log(this.size + ' este eh o tamanho');
   }
 
-  postConstruct(posts) {
+  public postConstruct() {
     this.postService.getAllPosts().subscribe(
       (res) => {
         console.log(res);
-        posts.push(res);
-        this.size = posts.length;
+        this.posts.push(res);
+        console.log(this.posts);
+        this.size = res.length;
+        console.log(this.size);
       },
       (error) => {
-        console.log();
+        console.log(error);
       }
-
+      
     );
   }
-  
-  loadData(event){
+
+  loadData(event) {
     const news = this.posts.slice(this.index, this.offset + this.index);
     this.index += this.offset;
 

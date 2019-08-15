@@ -75,7 +75,7 @@ export class EditProfilePage {
       (res) => {
         //console.log(res);
         this.presentToast("Perfil editado com sucesso!");
-        this.router.navigate(['tabs/profile']);
+        this.router.navigate(['tabs/home']);
       }
     );
   }

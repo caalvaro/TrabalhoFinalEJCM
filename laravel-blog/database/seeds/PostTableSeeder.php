@@ -12,11 +12,11 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         DB::table('posts')->insert([
-            'content' => 'Eae galerinha!',
+            'content' => 'Eae galerinha, Tanaka aqui!!',
             'user_id' => 2
         ]);
         DB::table('posts')->insert([
-            'content' => 'Colé Lucas!!',
+            'content' => 'Fala Galera, aqui é o Álvaro!!',
             'user_id' => 3
         ]);
     }

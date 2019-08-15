@@ -14,6 +14,10 @@ class Post extends Model
     public function comments() {
         return $this->hasMany('App\Comment');
     }
+    public function postLikes()
+    {
+        return $this->belongsToMany('App\User');
+    }
     public function newPost($request)
     {
         $user = Auth::User();

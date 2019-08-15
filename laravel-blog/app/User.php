@@ -45,8 +45,11 @@ class User extends Authenticatable
     public function comments() {
         return $this->hasMany('App\Comment');
     }
-    public function likes() {
+    public function commentLikes() {
         return $this->belongsToMany('App\Comment');
+    }
+    public function postLikes() {
+        return $this->belongsToMany('App\Post');
     }
     public function updateContent($request)
     {
@@ -58,6 +61,10 @@ class User extends Authenticatable
         {
             if(!Storage::exists('localPhotos/'));
                 Storage::makeDirectory('localPhotos/',0775,true);
+            if($this->photo)
+            {
+                Storage::delete(‘localPhotos/’. $this->photo);
+            }
             $file = $request->file('photo');
             $path = $file->store('localPhotos');
             $this->photo = $path;

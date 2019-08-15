@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\User;
 use DB;
@@ -43,9 +44,31 @@ class PassportController extends Controller
         $success['id'] = $newUser-> id;
         return response()->json(['success' => $success], $this->successStatus);
     }
+
     public function getDetails() {
        $user = Auth::user();
        return response()->json(['success' => $user], $this->successStatus); 
+    }
+    
+    public function passwordChange(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required',
+            'new_password' => 'required',
+            'c_new_password' => 'required|same:new_password',
+        ]);
+        if($validator -> fails()) {
+            return response() ->json(['error' => $validator->errors()], 401);
+        }
+        $user = Auth::User();
+        if(Hash::check($request->password,$user->password))
+        {
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+            return response()->success(['Senha alterada com sucesso']);
+        }
+        else {
+            return response()->error(['Senha Atual Inválida']);
+        }
     }
     public function logout() {
         $accessToken = Auth::user()->token();

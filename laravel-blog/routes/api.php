@@ -22,6 +22,8 @@ Route::post('register', 'API\PassportController@register');
 
 //User
 Route::get('listUser', 'UserController@listUser');
+Route::get('showPhoto/{id}','UserController@showPhoto');
+Route::get('findUser/{id}','UserController@findUser');
 
 //PasswordReset
 Route::post('passwordReset','UserController@passwordReset');
@@ -29,13 +31,11 @@ Route::get('passwordResetConfirm/{token}','UserController@passwordResetConfirm')
 Route::get('passwordResetCancel/{token}','UserController@passwordResetCancel');
 
 
-
-
-
 //Posts
 Route::get('userPosts', 'PostController@showUserPosts');
 Route::get('allPost', 'PostController@listPost');
 Route::get('findPost/{id}','PostController@findPost');
+Route::get('showPostLikes/{id}', 'PostController@showLikes');
 
 
 //Comments
@@ -43,7 +43,7 @@ Route::get('allComment', 'CommentController@listComment');
 Route::get('findComment/{id}','CommentController@findComment');
 Route::get('userComments', 'CommentController@showUserComments');
 Route::get('postComments/{id}', 'CommentController@showPostComments');
-Route::get('showLikes/{id}', 'CommentController@showLikes');
+Route::get('showCommentLikes/{id}', 'CommentController@showLikes');
 
 
 
@@ -52,9 +52,15 @@ Route::get('showLikes/{id}', 'CommentController@showLikes');
 Route::group(['middleware' => 'auth:api'], function() {
     //Passport
     Route::get('logout', 'API\PassportController@logout');
+<<<<<<< HEAD
     Route::get('likeComment/{id}', 'UserController@likeComment');
     Route::get('unlikeComment/{id}', 'UserController@unlikeComment');
     Route::get('getDetails', 'API\PassportController@getDetails');
+=======
+    Route::get('getDetails', 'API\PassportController@getDetails');
+
+    Route::put('passwordChange', 'API\PassportController@passwordChange');
+>>>>>>> origin/PostLikes_Pedro_back
     
     //User
 //form-data do postman nao trabalha com PUT, por isso updateUser está como POST
@@ -65,6 +71,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     //Post
     Route::post('createPost', 'PostController@createPost')->middleware('isBlogger');
 
+    Route::get('likePost/{id}', 'PostController@likePost');
+    Route::get('unlikePost/{id}', 'PostController@unlikePost');
 
     Route::put('updatePost/{id}', 'PostController@updatePost')->middleware('isBlogger')->middleware('isPostOwner');
 
@@ -72,6 +80,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //Comment
     Route::post('createComment/{id}', 'CommentController@createComment');
+
+    Route::get('likeComment/{id}', 'CommentController@likeComment');
+    Route::get('unlikeComment/{id}', 'CommentController@unlikeComment');
 
     Route::put('updateComment/{id}', 'CommentController@updateComment')->middleware('isCommentOwner');
 

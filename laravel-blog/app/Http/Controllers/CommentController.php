@@ -40,13 +40,52 @@ class CommentController extends Controller
         $post = Post::find($id);
         return $post->comments;
 	}
-	
+	public function likeComment($comment_id)
+    {
+        $user = Auth::User();
+        $comment = Comment::find($comment_id);
+        if($comment)
+        {
+            //testando se já há likes
+            if(!($user->commentLikes()->where('comment_id',$comment_id)->first()))
+            {
+                //criando o novo like
+                $user->commentLikes()->attach($comment->id);
+                return response()->json('Comment curtido com sucesso');
+            }
+            else {
+                return response()->json('Você já Curtiu esse Comment');
+            }
+        }
+        else {
+            return response()->json('Comment não encontrado, verifique o id');
+        }
+    }
+    public function unlikeComment($comment_id)
+    {
+        $user = Auth::User();
+        $comment = Comment::find($comment_id);
+        if($comment)
+        {
+            if($user->commentLikes()->where('comment_id',$comment_id)->first())
+            {
+                $user->commentLikes()->detach($comment->id);
+                return response()->json('Comentário descurtido com sucesso');
+            }
+            else {
+                return response()->json('Este comment não está curtido');
+            }
+        }
+        else {
+            return response()->json('Comment não encontrado, verifique o id');
+        }
+    }
 	public function showLikes($id)
 	{
 		$comment = Comment::find($id);
 		if($comment)
 		{
-			return $comment->likes()->count();
+			return $comment->commentLikes()->count();
 		}
 		else {
 			return response()->json('Comment não Encontrado, verifique o id');

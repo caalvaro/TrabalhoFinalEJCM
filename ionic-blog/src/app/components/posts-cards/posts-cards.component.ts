@@ -13,19 +13,14 @@ import { Observable } from 'rxjs';
 export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
-
-
-  name = 'User';
-  defaultImage = '../../assets/default_image/post.jpg ';
-  defaultUser = '../../assets/default_image/user.jpg ';
-  postTitle = 'Titulo Default';
-  mainText = 'loanosicnasnckansklcnaslckascascascasccascasca scsCAS ASC G ZSG DG DF TXHSRTHTRSHTRHSRTHBSRTHNSRTHSRTHasc';
-
+  name ;
+  user : any;
+  postTitle = 'Titulo';
+ 
   constructor(
     private modalControler: ModalController,
-    private postService: PostsService,
+    private postsService: PostsService,
     private router: Router,
-    private navCont: NavController
     ) {
       // conseguir pegar o id do card quando crio ele
 
@@ -38,6 +33,7 @@ export class PostsCardsComponent implements OnInit {
   ngOnInit() {
     console.log('mensagem')
     console.log(this.cardPost);
+    this.getUser();
   }
 
  
@@ -75,6 +71,25 @@ export class PostsCardsComponent implements OnInit {
       id: this.cardPost.id,
       mensagen: 'chegou mensagem'
     }]);
+  }
+
+
+  // adquirir info do usuario como imagem e nome
+  public getUser() {
+    this.postsService.getUser(this.cardPost.user_id).subscribe(
+      (res) => {
+        console.log(res);
+        this.user = res.data;
+        console.log('pegando info de user');
+        console.log(this.user);
+        if (this.user.photo === null) {
+          this.user.photo = '../../assets/default_image/user.jpg';
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

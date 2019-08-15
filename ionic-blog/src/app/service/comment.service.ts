@@ -20,34 +20,40 @@ export class CommentService {
   constructor(public http: HttpClient) { }
 
   // get all comments
-  public getAllComment(id): Observable<any>{
+  public getAllComment(id): Observable<any> {
     return this.http.get(this.backendURL + '/postComments' + id);
   }
 
   // encontrar um comentario
-  public findComment(){
+  public findComment(id): Observable<any> {
+    return this.http.get(this.backendURL + 'findComment/' + id );
   }
 
   // comentarios do proprio usuario
-  public userComments(){
-  }
+  // public userComments(): Observable<any>{
+  //   return this.http.get()
+  // }
 
   // os comments de um serto post
-  public postFromComments(){
+  public postsComments(id): Observable<any> {
+    return this.http.get(this.backendURL + 'postComments/' + id);
   }
 
   // mostrar os likes de um comment
-  public showLikes(){
+  public showLikes(id): Observable<any> {
+    return this.http.get(this.backendURL + 'showLikes/' + id);
   }
 
   // postar comentario
   public postComments(form , id): Observable<any> {
-     return this.http.post(this.backendURL + 'createComment/' + id, form, this.httpHeaders);
+    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
+    return this.http.post(this.backendURL + 'createComment/' + id, form, this.httpHeaders);
   }
 
   // dar like no comentario
-  public postLike(id){
-    return this.http.get(this.backendURL + 'likeComment/');
+  public postLike(id): Observable<any> {
+    this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
+    return this.http.get(this.backendURL + 'likeComment/', this.httpHeaders);
   }
 
 }

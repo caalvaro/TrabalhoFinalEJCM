@@ -14,11 +14,9 @@
   <!--usar o ion infinite scroll--->
 
   <ion-list>
-    <!--sumir com esse post-card extra quando estiver no produto final-->
-    <app-posts-cards></app-posts-cards>
-    <app-posts-cards *ngFor="let post of postPage" [cardPost] = "post"></app-posts-cards>
+    <app-posts-cards *ngFor="let post of posts" [cardPost] = "post"></app-posts-cards>
   </ion-list>
-  <ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite) = "loadData($event)">
+  <ion-infinite-scroll threshold="10px" id="infinite-scroll" (ionInfinite) = "loadData($event)">
     <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

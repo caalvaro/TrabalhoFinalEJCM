@@ -1,7 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Profile</ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+ 
 </ion-header>
 
 <ion-content>
@@ -9,11 +7,11 @@
   <ion-grid no-padding>
 
     <ion-row class="header-user">
-      <ion-col size="4">
+      <ion-col size="5">
         <img class="img-user" src={{infoUsuario.photo}}>
       </ion-col>
 
-      <ion-col size="8" align-self-center>
+      <ion-col size="7" align-self-center class="text-padding">
         <h1 class="text"><strong>{{infoUsuario.name}}</strong></h1>
         <br>
         <h6 class="text">{{infoUsuario.email}}</h6>

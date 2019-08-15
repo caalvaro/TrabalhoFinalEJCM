@@ -22,14 +22,13 @@ Route::post('register', 'API\PassportController@register');
 
 //User
 Route::get('listUser', 'UserController@listUser');
+Route::get('showPhoto/{id}','UserController@showPhoto');
+Route::get('findUser/{id}','UserController@findUser');
 
 //PasswordReset
 Route::post('passwordReset','UserController@passwordReset');
 Route::get('passwordResetConfirm/{token}','UserController@passwordResetConfirm');
 Route::get('passwordResetCancel/{token}','UserController@passwordResetCancel');
-
-
-
 
 
 //Posts
@@ -52,13 +51,17 @@ Route::get('showLikes/{id}', 'CommentController@showLikes');
 Route::group(['middleware' => 'auth:api'], function() {
     //Passport
     Route::get('logout', 'API\PassportController@logout');
-    Route::get('likeComment/{id}', 'UserController@likeComment');
-    Route::get('unlikeComment/{id}', 'UserController@unlikeComment');
     Route::get('getDetails', 'API\PassportController@getDetails');
+
+    Route::put('passwordChange', 'API\PassportController@passwordChange');
     
     //User
 //form-data do postman nao trabalha com PUT, por isso updateUser está como POST
     Route::post('updateUser','UserController@updateUser');
+
+    Route::get('likeComment/{id}', 'UserController@likeComment');
+    Route::get('unlikeComment/{id}', 'UserController@unlikeComment');
+
 
     Route::delete('deleteUser','UserController@deleteUser');
 

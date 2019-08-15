@@ -58,6 +58,10 @@ class User extends Authenticatable
         {
             if(!Storage::exists('localPhotos/'));
                 Storage::makeDirectory('localPhotos/',0775,true);
+            if($this->photo)
+            {
+                Storage::delete(‘localPhotos/’. $this->photo);
+            }
             $file = $request->file('photo');
             $path = $file->store('localPhotos');
             $this->photo = $path;

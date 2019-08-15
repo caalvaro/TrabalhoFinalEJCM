@@ -28,63 +28,7 @@ class UserController extends Controller
 			return response()->error($data,400);
 		}
     }
-    
-    public function likeComment($comment_id)
-    {
-        $user = Auth::User();
-        $comment = Comment::find($comment_id);
-        if($comment)
-        {
-            //testando se já há likes
-            if(!($user->likes()->where('comment_id',$comment_id)->first()))
-            {
-                //criando o novo like
-                $user->likes()->attach($comment->id);
-                return response()->json('Comment curtido com sucesso');
-            }
-            else {
-                return response()->json('Você já Curtiu esse Comment');
-            }
-        }
-        else {
-            return response()->json('Comment não encontrado, verifique o id');
-        }
-    }
-    public function unlikeComment($comment_id)
-    {
-        $user = Auth::User();
-        $comment = Comment::find($comment_id);
-        if($comment)
-        {
-            if($user->likes()->where('comment_id',$comment_id)->first())
-            {
-                $user->likes()->detach($comment->id);
-                return response()->json('Comentário descurtido com sucesso');
-            }
-            else {
-                return response()->json('Este comment não está curtido');
-            }
-        }
-        else {
-            return response()->json('Comment não encontrado, verifique o id');
-        }
-    }
-    public function showPhoto($id)
-    {
-        $user = User::find($id);
-        if($user) {
-            if($user->photo)
-            {
-                return response()->download($user->photo);
-            }
-            else {
-                return response()->error(['User não possui foto.']);
-            }
-        }
-        else {
-            return response()->error(['User não encontrado, favor verifique o id']);
-        }
-    }
+
     public function updateUser(Request $request)
 	{
         $user = Auth::User();

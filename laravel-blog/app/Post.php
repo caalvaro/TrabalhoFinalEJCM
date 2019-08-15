@@ -14,11 +14,24 @@ class Post extends Model
     public function comments() {
         return $this->hasMany('App\Comment');
     }
+    public function postLikes()
+    {
+        return $this->belongsToMany('App\User');
+    }
     public function newPost($request)
     {
         $user = Auth::User();
 		$this->content = $request->content;
-        $this->photo = $request->photo;
+        if($request->photo)
+        {
+            if(!Storage::exists('localPhotos/'));
+                Storage::makeDirectory('localPhotos/',0775,true);
+            $image = base64_decode($request->photo);
+            $imgName = uniqid().'.png';
+            $path = storage_path('/app/localPhotos/'.$imgname);
+            file_put_contents($path,$image);
+            $this->photo = $imgName;
+        }
         $this->user_id = $user->id;
 		$this->save();
     }

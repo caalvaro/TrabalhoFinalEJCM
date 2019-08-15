@@ -22,7 +22,6 @@ export class ProfilePage {
   }
 
   ionViewWillEnter () {
-    console.log("entrou aaaaaaa");
     if (localStorage.getItem('userToken') != null) {
       this.getInfoUsuario();
     }
@@ -46,7 +45,6 @@ export class ProfilePage {
   getInfoUsuario() {
     this.authService.getInfoUsuario().subscribe(
       (res) => {
-        console.log(res);
         this.infoUsuario = res.success;
         if (res.success.photo == null) {
           this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';

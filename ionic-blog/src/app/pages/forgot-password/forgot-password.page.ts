@@ -36,7 +36,6 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   enviaEmail( forgotForm ) {
-    console.log(forgotForm);
     if ( forgotForm.status == "VALID" ) {
       this.authService.enviaEmail(forgotForm.value).subscribe(
         ( res ) => {

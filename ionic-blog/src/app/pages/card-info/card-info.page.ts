@@ -21,7 +21,7 @@ export class CardInfoPage implements OnInit {
 
   comments: any = [];
   commentCards: any = [];
-  size: number;
+  commentsSize: number;
   private readonly offset = 5;
   private index = 0;
 
@@ -44,8 +44,12 @@ export class CardInfoPage implements OnInit {
     console.log('o comment eh');
     console.log(this.comments);
     console.log(this.id);
-    this.commentCards = this.comments.slice(this.index, this.offset + this.index);
-    this.index += this.offset;
+    if (this.commentsSize > this.offset) {
+      this.commentCards = this.comments.slice(this.index, this.offset + this.index);
+      this.index += this.offset;
+    } else {
+      this.commentCards = this.comments;
+    }
     console.log('os comments card sao ');
     console.log(this.commentCards);
     console.log(this.mensage);
@@ -67,12 +71,12 @@ export class CardInfoPage implements OnInit {
     this.commentService.postsComments(this.id).subscribe(
       (res) => {
         console.log(res);
-        this.comments = res;
+        this.comments.push(res);
         console.log('mostrando o comments');
         console.log(this.comments);
-        this.size = this.comments.length;
-        console.log('o tamanho dos comments eh')
-        console.log(this.size);
+        this.commentsSize = this.comments.length;
+        console.log('o tamanho dos comments eh');
+        console.log(this.commentsSize);
 
       },
       (error) => {

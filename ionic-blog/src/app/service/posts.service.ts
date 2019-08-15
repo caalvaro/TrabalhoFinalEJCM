@@ -28,6 +28,10 @@ export class PostsService {
     return this.http.get(this.backendURL + 'findPost/' + id);
   }
 
+  public getUser(id): Observable<any> {
+    return this.http.get(this.backendURL + 'findUser/' + id);
+  }
+
   public postPosts( post ): Observable<any> {
     this.httpHeaders.headers.Authorization = 'Bearer ' + localStorage.getItem('userToken');
     

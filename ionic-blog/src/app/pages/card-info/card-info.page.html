@@ -16,10 +16,10 @@
   
         <!-- user info no <a> -->
         <a slot='start' class="item-avatar" >
-          <img src="#" class="avatar-iamge">
+          <img src="{{user.photo}}" class="avatar-iamge">
         </a>
   
-        <ion-card-subtitle class="post-name">{{id}}</ion-card-subtitle>
+        <ion-card-subtitle class="post-name">{{user.name}}</ion-card-subtitle>
   
         <ion-button slot="end" class="more-icon" color="white" fill="clear" (click)="edit()">
           <ion-icon name="more"></ion-icon>
@@ -27,7 +27,7 @@
   
       </ion-toolbar>
   
-      <ion-card-title class="post-title" ></ion-card-title>
+      <ion-card-title class="post-title" >Tituo</ion-card-title>
   
     </ion-card-header>
   
@@ -50,9 +50,8 @@
 
     <!--card comment-->
     <!--utlizar o ngIf no card para caso tenha um comment-->
-    <ion-list *ngIf = "!commentsIf()">
-      <app-comments-card></app-comments-card>
-      <app-comments-card *ngFor="let cooment of commentCards" [idPost] = "comment" ></app-comments-card>
+    <ion-list *ngIf = "commentsIf()">
+      <app-comments-card *ngFor="let comment of commentCards" [idPost] = "comment" ></app-comments-card>
     </ion-list>
     <ion-infinite-scroll threshold="100px" id="infinite-scroll" (ionInfinite)="loadData($event)">
       <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">

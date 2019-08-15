@@ -17,6 +17,7 @@ export class CardInfoPage implements OnInit {
   idUser;
   mensage;
   post: any = [];
+  user: any = [];
 
   comments: any = [];
   commentCards: any = [];
@@ -39,13 +40,16 @@ export class CardInfoPage implements OnInit {
     this.id = this.aRoute.snapshot.paramMap.get('id');
     this.mensage = this.aRoute.snapshot.paramMap.get('mensagen');
     this.getPost();
-    this.commentConstruct();
+    this.getComment();
+    console.log('o comment eh');
+    console.log(this.comments);
     console.log(this.id);
     this.commentCards = this.comments.slice(this.index, this.offset + this.index);
     this.index += this.offset;
+    console.log('os comments card sao ');
     console.log(this.commentCards);
     console.log(this.mensage);
-
+    this.getUser();
 
   }
 
@@ -59,14 +63,16 @@ export class CardInfoPage implements OnInit {
 
 
 
-  commentConstruct() {
-    this.commentService.getAllComment(this.id).subscribe(
+  public getComment() {
+    this.commentService.postsComments(this.id).subscribe(
       (res) => {
         console.log(res);
-        this.comments = res.data;
+        this.comments = res;
         console.log('mostrando o comments');
         console.log(this.comments);
         this.size = this.comments.length;
+        console.log('o tamanho dos comments eh')
+        console.log(this.size);
 
       },
       (error) => {
@@ -129,5 +135,20 @@ export class CardInfoPage implements OnInit {
 
   // adquirir info do usuario como imagem e nome
   public getUser() {
+    this.postsService.getUser(this.id).subscribe(
+      (res) => {
+        console.log(res);
+        this.user = res.data;
+        console.log('pegando info de user');
+        console.log(this.user);
+        if (this.user.photo === null) {
+          this.user.photo = '../../assets/default_image/user.jpg';
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
+
 }

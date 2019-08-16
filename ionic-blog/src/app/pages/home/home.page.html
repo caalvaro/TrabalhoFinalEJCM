@@ -4,7 +4,9 @@
       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
     </ion-avatar>
     <ion-toolbar>
-      <ion-searchbar></ion-searchbar>
+      <ion-button  class="ion-margin-end" slot="end" (click)="navigatePostar()" *ngIf="infoUsuario.isBlogger == 1">
+        <ion-icon slot="start" name="create"></ion-icon> Postar
+      </ion-button>
     </ion-toolbar>
   </ion-item>
 

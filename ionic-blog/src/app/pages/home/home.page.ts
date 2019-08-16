@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../service/posts.service';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +18,30 @@ export class HomePage implements OnInit {
   private readonly offset = 5;
   private index = 0;
 
-  constructor(private postService: PostsService) {
+  //informações do usuario logado
+  infoUsuario = {
+    isBlogger: 0,
+    photo: null
   }
-  
+
+  constructor(private postService: PostsService, private authService: AuthService, private router: Router) {
+  }
+
+  ionViewDidEnter () {
+    if (localStorage.getItem('userToken') != null) {
+      this.authService.getInfoUsuario().subscribe(
+        (res) => {
+          console.log(res);
+          this.infoUsuario = res.success;
+          if (res.success.photo == null) {
+            this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
+          }
+          console.log(this.infoUsuario);
+        }
+      );
+    }
+  }
+
   ngOnInit() {
     this.postConstruct();
     //console.log(this.posts.lenght);
@@ -65,5 +88,9 @@ export class HomePage implements OnInit {
     );
 
 
+  }
+
+  navigatePostar() {
+    this.router.navigate(['/posting']);
   }
 }

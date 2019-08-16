@@ -14,12 +14,12 @@
       </ion-button>
 
     </ion-toolbar>
-    <ion-card-title class="post-title" (click) = "postInfo()">{{postTitle}}</ion-card-title>
+    <!-- <ion-card-title class="post-title" (click) = "postInfo()">{{postTitle}}</ion-card-title> -->
 
 
   </ion-card-header>
 
-  <ion-card-content class ="content">
+  <ion-card-content class ="content" (click) = "postInfo()">
     <p  *ngIf="change()" class="text-content">{{cardPost.content}}</p>
     <img src="{{cardPost.photo}}" class="post-image" >
   </ion-card-content>

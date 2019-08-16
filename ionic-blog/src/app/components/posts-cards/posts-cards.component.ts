@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
+  id;
   name ;
   user: any = [];
   comment: any = [];
@@ -38,6 +39,7 @@ export class PostsCardsComponent implements OnInit {
     this.getUser();
     console.log(this.user);
     console.log('mensagem pos getuser');
+    this.id = this.cardPost.id;
   }
 
 

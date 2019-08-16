@@ -10,6 +10,13 @@ class PostController extends Controller
 {
     public function createPost(Request $request)
 	{
+		$validator = Validator::make($request -> all(), [
+			'content' => 'required|max:500',
+		]);
+		if($validator->fails())
+		{
+			return response() ->json(['error' => $validator->errors()], 401);
+		}
         $post = new Post;
         $post->newPost($request);
         return response()->json([$post]);
@@ -86,6 +93,13 @@ class PostController extends Controller
 	}
 	public function updatePost(Request $request, $id)
 	{
+		$validator = Validator::make($request -> all(), [
+			'content' => 'required|max:500',
+		]);
+		if($validator->fails())
+		{
+			return response() ->json(['error' => $validator->errors()], 401);
+		}
         $post = Post::find($id);
         if($post) {
             $post->updateContent($request);

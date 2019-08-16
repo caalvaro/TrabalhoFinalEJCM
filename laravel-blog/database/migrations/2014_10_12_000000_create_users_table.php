@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('photo')->nullable();
+            $table->longText('photo')->nullable();
             $table->string('password');
             $table->tinyInteger('isBlogger')->default(0);
             $table->rememberToken();

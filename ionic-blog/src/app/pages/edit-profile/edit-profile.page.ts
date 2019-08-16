@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -21,7 +21,7 @@ export class EditProfilePage {
   }
   myPhoto;
 
-  constructor(  public authService: AuthService, public router: Router, public toastController: ToastController, private camera: Camera ) {
+  constructor(  public authService: AuthService, public router: Router, public toastController: ToastController, private camera: Camera, public navController:NavController ) {
       
   }
 
@@ -78,6 +78,10 @@ export class EditProfilePage {
         this.router.navigate(['tabs/home']);
       }
     );
+  }
+
+  public goBack() {
+    this.navController.pop();
   }
 
 }

@@ -21,7 +21,7 @@ export class CommentService {
 
   // get all comments
   public getAllComment(id): Observable<any> {
-    return this.http.get(this.backendURL + '/postComments' + id);
+    return this.http.get(this.backendURL + 'postComments' + id);
   }
 
   // encontrar um comentario
@@ -41,7 +41,7 @@ export class CommentService {
 
   // mostrar os likes de um comment
   public showLikes(id): Observable<any> {
-    return this.http.get(this.backendURL + 'showLikes/' + id);
+    return this.http.get(this.backendURL + 'showCommentLikes/' + id);
   }
 
   // postar comentario

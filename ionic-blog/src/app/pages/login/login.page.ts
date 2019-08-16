@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 import { AuthService } from '../../service/auth.service';
 
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor( public formbuilder: FormBuilder, public authService: AuthService,  public router: Router,
-    public toastController: ToastController ) { 
+    public toastController: ToastController, public navController:NavController ) { 
     this.loginForm = this.formbuilder.group({
   		email: ['', [Validators.required, Validators.email]],
   		password: ['', [Validators.required, Validators.minLength(6)]],
@@ -49,6 +49,10 @@ export class LoginPage implements OnInit {
         }
       );
     }
+  }
+
+  public goBack() {
+    this.navController.pop();
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class RegisterPage implements OnInit {
   cadastroForm: FormGroup;
 
   constructor( public formbuilder: FormBuilder, public authService: AuthService,  public router: Router,
-    public toastController: ToastController ) {
+    public toastController: ToastController, public navController:NavController ) {
 
     this.cadastroForm = this.formbuilder.group({
   		name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
@@ -51,5 +51,9 @@ export class RegisterPage implements OnInit {
         }
       );
     }
+  }
+
+  public goBack() {
+    this.navController.pop();
   }
 }

@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Editar Perfil</ion-title>
+    <ion-button fill = "clear" (click) = "goBack()">
+      <ion-icon slot="icon-only" name="arrow-back" ></ion-icon>
+    </ion-button>
+    <ion-title slot="primary">Editar Perfil</ion-title>
     <ion-button class="ion-margin-end" slot="end" (click)="editarPerfil( form )" [disabled]="form.name.length < 3">
       Editar
     </ion-button>

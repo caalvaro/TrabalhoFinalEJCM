@@ -24,6 +24,13 @@ ion-item, ion-header, ion-searchbar{
      margin-top:10vh;
 }
 
+.logo {
+  height: 50px;
+  width: auto;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
 @media (max-width: 400px){
 
      app-posts-cards{

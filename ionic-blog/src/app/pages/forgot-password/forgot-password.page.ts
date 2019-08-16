@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 import { AuthService } from '../../service/auth.service';
 
@@ -18,7 +18,7 @@ export class ForgotPasswordPage implements OnInit {
   forgotForm: FormGroup;
 
   constructor( public formbuilder: FormBuilder, public authService: AuthService,  public router: Router,
-    public toastController: ToastController ) { 
+    public toastController: ToastController, public navController:NavController ) { 
     this.forgotForm = this.formbuilder.group({
   		email: ['', [Validators.required, Validators.email]]
   	});
@@ -50,6 +50,10 @@ export class ForgotPasswordPage implements OnInit {
         }
       );
     }
+  }
+
+  public goBack() {
+    this.navController.pop();
   }
 
 }

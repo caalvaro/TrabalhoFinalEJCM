@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -23,7 +23,7 @@ export class PostingPage implements OnInit {
   infoUsuario: any;
 
   constructor( public formbuilder: FormBuilder, public postsService: PostsService, 
-    public router: Router, public toastController: ToastController, private camera: Camera, public authService: AuthService ) {
+    public router: Router, public toastController: ToastController, private camera: Camera, public authService: AuthService, public navController:NavController ) {
       this.postForm = this.formbuilder.group({
         content: ['', [Validators.required]],
         photo: ['', []]
@@ -32,7 +32,7 @@ export class PostingPage implements OnInit {
                           'id': -1,
                           'isBlogger': 0,
                           'name': "Username",
-                          'photo': '..\\..\\..\\assets\\icon\\user.png'};
+                          'photo': '..\\..\\..\\assets\\default_image\\user.jpg'};
   }
 
   ionViewWillEnter () {
@@ -41,7 +41,7 @@ export class PostingPage implements OnInit {
         (res) => {
           this.infoUsuario = res.success;
           if (res.success.photo == null) {
-            this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
+            this.infoUsuario.photo = '..\\..\\..\\assets\\default_image\\user.jpg';
           }
           console.log(this.infoUsuario);
         }
@@ -101,6 +101,10 @@ export class PostingPage implements OnInit {
       );
     }
 
+  }
+
+  public goBack() {
+    this.navController.pop();
   }
 
 }

@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Posting</ion-title>
+    <ion-button fill = "clear" (click) = "goBack()">
+      <ion-icon slot="icon-only" name="arrow-back" ></ion-icon>
+    </ion-button>
+    <ion-title slot="primary">Posting</ion-title>
     <ion-button class="ion-margin-end" slot="end" (click)="postar( postForm )" [disabled]="postForm.status != 'VALID'">
       Post
     </ion-button>
@@ -25,10 +28,10 @@
 
     <ion-row>
       <ion-col size="12">
-        <img src="{{ myPhoto }}">
+        <img class="img-user" src="{{ myPhoto }}">
 
         <form [formGroup]="postForm">
-          <ion-item> 
+          <ion-item>
             <ion-label position="floating">Conteúdo</ion-label>
             <ion-textarea rows="10" formControlName="content"></ion-textarea>
           </ion-item>

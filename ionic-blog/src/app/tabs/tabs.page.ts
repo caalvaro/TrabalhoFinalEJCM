@@ -1,32 +1,15 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../service/auth.service'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit {
 
-  infoUsuario = {
-    isBlogger: 0,
-    photo: null
-  }
+  constructor() {}
 
-  constructor(public authService: AuthService) {}
+  ngOnInit() {
 
-  ionViewDidEnter () {
-    if (localStorage.getItem('userToken') != null) {
-      this.authService.getInfoUsuario().subscribe(
-        (res) => {
-          console.log(res);
-          this.infoUsuario = res.success;
-          if (res.success.photo == null) {
-            this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
-          }
-          console.log(this.infoUsuario);
-        }
-      );
-    }
   }
 }

@@ -3,7 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { CommentCreationPage } from '../../pages/comment-creation/comment-creation.page';
 import { PostsService } from '../../service/posts.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-posts-cards',
@@ -14,9 +14,10 @@ export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
   name ;
-  user : any;
+  user: any;
+  comment: any = [];
   postTitle = 'Titulo';
- 
+
   constructor(
     private modalControler: ModalController,
     private postsService: PostsService,
@@ -27,16 +28,18 @@ export class PostsCardsComponent implements OnInit {
       // this.idUser = this.cardPost.id_user;
       // this.idPost = this.cardPost.id_post;
 
-      //console.log(this.cardPost);
+      // console.log(this.cardPost);
+
      }
 
   ngOnInit() {
     //console.log('mensagem')
     //console.log(this.cardPost);
     this.getUser();
+    console.log('mensagem pos getuser');
   }
 
- 
+
 
   async showModalComent() {
     const modal = await this.modalControler.create({
@@ -48,8 +51,10 @@ export class PostsCardsComponent implements OnInit {
 
   // trocar as informacoes de imagem para texto
   public change() {
-    if (this.cardPost.photo === null) {
+    if (this.cardPost.photo === null || this.cardPost.photo === undefined) {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -64,8 +69,15 @@ export class PostsCardsComponent implements OnInit {
 
   // post info
   public postInfo() {
+<<<<<<< HEAD
     //console.log('antes de navegar pra roxima pagin');
     //console.log(this.cardPost.user_id);
+=======
+    console.log('antes de navegar pra roxima pagin');
+    console.log(this.cardPost);
+    console.log(this.cardPost.user_id);
+    console.log(this.cardPost.id);
+>>>>>>> 71f6871c088eae5772c1c00980ea5fa344c191e5
     this.router.navigate(['/card-info', {
       id_user: this.cardPost.user_id,
       id: this.cardPost.id,
@@ -80,9 +92,15 @@ export class PostsCardsComponent implements OnInit {
       (res) => {
         //console.log(res);
         this.user = res.data;
+<<<<<<< HEAD
         //console.log('pegando info de user');
         //console.log(this.user);
         if (this.user.photo === null) {
+=======
+        console.log('pegando info de user em posts');
+        console.log(this.user);
+        if (this.user.photo == null) {
+>>>>>>> 71f6871c088eae5772c1c00980ea5fa344c191e5
           this.user.photo = '../../assets/default_image/user.jpg';
         }
       },

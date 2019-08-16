@@ -4,10 +4,10 @@
     <ion-toolbar class="comment-toolbar">
 
       <a slot='start' class="comment-item-avatar" (click)="userInfo()">
-        <img src="{{defaultUser}}" class="comment-avatar-iamge">
+        <img src="{{commentUser.photo}}" class="comment-avatar-iamge">
       </a>
 
-      <ion-card-subtitle class="comment-post-name">{{name}}</ion-card-subtitle>
+      <ion-card-subtitle class="comment-post-name">{{commentUser.name}}</ion-card-subtitle>
 
       <ion-button slot="end" class="comment-more-icon" color="white" fill="clear" (click)="edit()">
         <ion-icon name="more"></ion-icon>
@@ -18,7 +18,7 @@
   </ion-card-header>
 
   <ion-card-content class="content">
-    <p class="comment-text-content">{{mainText}}</p>
+    <p class="comment-text-content">{{post.content}}</p>
   </ion-card-content>
 
   <ion-item class="post-footer">

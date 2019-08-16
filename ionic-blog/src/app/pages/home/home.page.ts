@@ -17,6 +17,9 @@ export class HomePage implements OnInit {
   private index = 0;
 
   constructor(private postService: PostsService) {
+  }
+  
+  ngOnInit() {
     this.postConstruct();
     //console.log(this.posts.lenght);
     if (this.size >= 5) {
@@ -24,9 +27,6 @@ export class HomePage implements OnInit {
       this.index += this.offset;
     }
     //console.log(this.size);
-  }
-
-  ngOnInit() {
   }
 
   public postConstruct() {

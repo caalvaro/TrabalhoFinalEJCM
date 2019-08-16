@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\PasswordResetNot;
+use Illuminate\Support\Facades\Validator;
 use App\Post;
 use App\User;
 use App\Comment;

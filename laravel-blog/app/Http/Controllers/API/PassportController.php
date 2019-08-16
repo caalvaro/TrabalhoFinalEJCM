@@ -27,9 +27,9 @@ class PassportController extends Controller
 
     public function register (Request $request) {
         $validator = Validator::make($request -> all(), [
-            'name' => 'required',
+            'name' => 'required|min:3|max:25',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6|max:15',
             'c_password' => 'required|same:password',
         ]);
         if($validator -> fails()) {
@@ -53,7 +53,7 @@ class PassportController extends Controller
     public function passwordChange(Request $request) {
         $validator = Validator::make($request->all(), [
             'password' => 'required',
-            'new_password' => 'required',
+            'new_password' => 'required|min:6|max:15',
             'c_new_password' => 'required|same:new_password',
         ]);
         if($validator -> fails()) {

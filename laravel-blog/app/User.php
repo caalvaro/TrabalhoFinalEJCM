@@ -59,17 +59,7 @@ class User extends Authenticatable
         }
         if($request->photo)
         {
-            if(!Storage::exists('localPhotos/'));
-                Storage::makeDirectory('localPhotos/',0775,true);
-            if($this->photo)
-            {
-                Storage::delete(‘localPhotos/’. $this->photo);
-            }
-            $image = base64_decode($request->photo);
-            $imgName = uniqid().'.png';
-            $path = storage_path('/app/localPhotos/'.$imgName);
-            file_put_contents($path,$image);
-            $this->photo = $imgName;
+            $this->photo = $request->photo;
         }
         $this->save(); 
     }

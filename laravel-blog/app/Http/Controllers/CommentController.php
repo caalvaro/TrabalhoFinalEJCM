@@ -12,6 +12,13 @@ class CommentController extends Controller
 {
     public function createComment(Request $request, $post_id)
 	{
+        $validator = Validator::make($request -> all(), [
+			'content' => 'required|max:500',
+		]);
+		if($validator->fails())
+		{
+			return response() ->json(['error' => $validator->errors()], 401);
+		}
         $comment = new Comment;
         $comment->newComment($request, $post_id);
         return response()->json([$comment]);
@@ -93,6 +100,13 @@ class CommentController extends Controller
 	}
 	public function updateComment(Request $request, $id)
 	{
+        $validator = Validator::make($request -> all(), [
+			'content' => 'required|max:500',
+		]);
+		if($validator->fails())
+		{
+			return response() ->json(['error' => $validator->errors()], 401);
+		}
         $comment = Comment::find($id);
         if($comment) {
             $comment->updateContent($request);

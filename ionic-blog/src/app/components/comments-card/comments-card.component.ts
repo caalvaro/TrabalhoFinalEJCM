@@ -10,11 +10,12 @@ import { PostsService } from '../../service/posts.service';
 })
 export class CommentsCardComponent implements OnInit {
 
-  @Input() post;
+  @Input() commentInfo;
 
+  user;
+  numberLikes: number;
   idUser: number;
   idPost: number;
-  commentUser;
   defaultUser = '../../assets/default_image/user.jpg ';
   postTitle = 'Titulo Default';
   mainText = 'loanosicnasnckansklcnaslckascascascasccascasca scsCAS ASC G ZSG DG DF TXHSRTHTRSHTRHSRTHBSRTHNSRTHSRTHasc';
@@ -26,20 +27,40 @@ export class CommentsCardComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    console.log('isso eh o  post');
-    console.log(this.post);
+   // this.showLikes();
+    console.log('isso eh o commentInfo');
+    console.log(this.commentInfo);
     console.log('comment user');
-    console.log(this.commentUser);
+    console.log(this.user);
   }
 
+  //ver quantos likes o comentario tem no momento 
+
+  // public showLikes(){
+  //   this.commentService.showLikes(this.commentInfo.post_id).subscribe(
+  //     (res) => {
+  //       console.log('numero de likes');
+  //       console.log(res);
+  //       this.numberLikes = res;
+  //       if (this.numberLikes === null) {
+  //         this.numberLikes = 0;
+  //       }
+
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
 
   // funcao para redirecionar pagina que da mais info sobre o user
+  public ifLike(){
 
+  }
 
   // funcao fz eu dar like no post
   public like() {
-
-    this.commentService.postLike(this.post).subscribe(
+    this.commentService.postLike(this.commentInfo.post_id).subscribe(
       (res) => {
         console.log(res);
       }
@@ -54,14 +75,14 @@ export class CommentsCardComponent implements OnInit {
   // funcao para redirecionar pagina que da mais info sobre o user
   public getUser() {
     // modificar
-    this.postsService.getUser(this.post.id).subscribe(
+    this.postsService.getUser(this.commentInfo.user_id).subscribe(
       (res) => {
         console.log(res);
-        this.commentUser.push(res);
+        this.user = res.data;
         console.log('pegando info de user do comment');
-        console.log(this.commentUser);
-        if (this.commentUser.photo === null) {
-          this.commentUser.photo = '../../assets/default_image/user.jpg';
+        console.log(this.user);
+        if (this.user.photo === null) {
+          this.user.photo = '../../assets/default_image/user.jpg';
         }
       },
       (error) => {
@@ -69,5 +90,7 @@ export class CommentsCardComponent implements OnInit {
       }
     );
   }
+  
+  
 
 }

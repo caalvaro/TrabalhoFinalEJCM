@@ -53,7 +53,7 @@ export class CommentService {
   // dar like no comentario
   public postLike(id): Observable<any> {
     this.httpHeaders.headers["Authorization"] = "Bearer " + localStorage.getItem('userToken');
-    return this.http.get(this.backendURL + 'likeComment/', this.httpHeaders);
+    return this.http.get(this.backendURL + 'likeComment/' + id, this.httpHeaders);
   }
 
 }

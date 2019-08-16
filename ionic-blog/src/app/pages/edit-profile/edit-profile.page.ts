@@ -32,7 +32,7 @@ export class EditProfilePage {
           this.form.name = res.success.name;
           
           if (res.success.photo == null) {
-            this.myPhoto = '..\\..\\..\\assets\\icon\\user.png';
+            this.myPhoto = '..\\..\\..\\assets\\default_image\\user.jpg';
           }
           else {
             this.myPhoto = res.success.photo;

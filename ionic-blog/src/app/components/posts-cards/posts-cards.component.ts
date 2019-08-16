@@ -31,8 +31,8 @@ export class PostsCardsComponent implements OnInit {
      }
 
   ngOnInit() {
-    console.log('mensagem')
-    console.log(this.cardPost);
+    //console.log('mensagem')
+    //console.log(this.cardPost);
     this.getUser();
   }
 
@@ -64,8 +64,8 @@ export class PostsCardsComponent implements OnInit {
 
   // post info
   public postInfo() {
-    console.log('antes de navegar pra roxima pagin');
-    console.log(this.cardPost.user_id);
+    //console.log('antes de navegar pra roxima pagin');
+    //console.log(this.cardPost.user_id);
     this.router.navigate(['/card-info', {
       id_user: this.cardPost.user_id,
       id: this.cardPost.id,
@@ -78,16 +78,16 @@ export class PostsCardsComponent implements OnInit {
   public getUser() {
     this.postsService.getUser(this.cardPost.user_id).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.user = res.data;
-        console.log('pegando info de user');
-        console.log(this.user);
+        //console.log('pegando info de user');
+        //console.log(this.user);
         if (this.user.photo === null) {
           this.user.photo = '../../assets/default_image/user.jpg';
         }
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
       }
     );
   }

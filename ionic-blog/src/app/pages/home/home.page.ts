@@ -18,12 +18,12 @@ export class HomePage implements OnInit {
 
   constructor(private postService: PostsService) {
     this.postConstruct();
-    console.log(this.posts.lenght);
+    //console.log(this.posts.lenght);
     if (this.size >= 5) {
       this.postPage = this.posts.slice(this.index, this.offset + this.index);
       this.index += this.offset;
     }
-    console.log(this.size);
+    //console.log(this.size);
   }
 
   ngOnInit() {
@@ -33,17 +33,17 @@ export class HomePage implements OnInit {
    this.postService.getAllPosts().subscribe(
       (res) => {
         this.posts = res;
-        console.log(this.posts);
+        //console.log(this.posts);
 
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
       }
     );
   }
   loadData(event) {
     setTimeout(() => {
-      console.log('Done');
+      //console.log('Done');
       event.target.complete();
 
       // App logic to determine if all data is loaded
@@ -57,10 +57,10 @@ export class HomePage implements OnInit {
   public getPost(id) {
     this.postService.getPost(id).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
       }
     );
 

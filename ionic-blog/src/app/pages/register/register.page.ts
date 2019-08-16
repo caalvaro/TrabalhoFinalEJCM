@@ -19,10 +19,10 @@ export class RegisterPage implements OnInit {
     public toastController: ToastController ) {
 
     this.cadastroForm = this.formbuilder.group({
-  		name: ['', [Validators.required, Validators.minLength(3)]],
+  		name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
   		email: ['', [Validators.required, Validators.email]],
-  		password: ['', [Validators.required, Validators.minLength(6)]],
-      c_password: ['', [Validators.required, Validators.minLength(6)]]
+  		password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+      c_password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]]
   	});
   }
 

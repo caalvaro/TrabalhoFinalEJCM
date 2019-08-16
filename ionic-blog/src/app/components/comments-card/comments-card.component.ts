@@ -36,11 +36,11 @@ export class CommentsCardComponent implements OnInit {
 
     this.commentService.postLike(this.idPost).subscribe(
       (res) => {
-        console.log(res)
+        //console.log(res)
       }
     );
     
-    console.log("like");
+    //console.log("like");
   }
 
   // funcao faz eu ver opcaoes de edicao do post

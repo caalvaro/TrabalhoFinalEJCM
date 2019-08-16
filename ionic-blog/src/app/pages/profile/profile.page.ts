@@ -14,11 +14,7 @@ export class ProfilePage {
   infoUsuario: any;
   
   constructor(public router: Router, public authService: AuthService) { 
-    this.infoUsuario = {'email': "user@name.com",
-    'id': -1,
-    'isBlogger': 0,
-    'name': "Username",
-    'photo': '..\\..\\..\\assets\\icon\\user.png'};
+    this.resetUser();
   }
 
   ionViewWillEnter () {
@@ -33,11 +29,7 @@ export class ProfilePage {
         console.log(res);
         localStorage.removeItem('userToken');
         this.router.navigate(['tabs/home']);
-        this.infoUsuario = {'email': "user@name.com",
-                            'id': -1,
-                            'isBlogger': 0,
-                            'name': "Username",
-                            'photo': '..\\..\\..\\assets\\icon\\user.png'};
+        this.resetUser();
       }
     );
   }
@@ -47,11 +39,19 @@ export class ProfilePage {
       (res) => {
         this.infoUsuario = res.success;
         if (res.success.photo == null) {
-          this.infoUsuario.photo = '..\\..\\..\\assets\\icon\\user.png';
+          this.infoUsuario.photo = '..\\..\\..\\assets\\default_image\\user.jpg';
         }
-        console.log(this.infoUsuario);
+        // console.log(this.infoUsuario);
       }
     );
+  }
+
+  resetUser() {
+    this.infoUsuario = {'email': "user@name.com",
+                            'id': -1,
+                            'isBlogger': 0,
+                            'name': "Username",
+                            'photo': '..\\..\\..\\assets\\default_image\\user.jpg'};
   }
 
 }

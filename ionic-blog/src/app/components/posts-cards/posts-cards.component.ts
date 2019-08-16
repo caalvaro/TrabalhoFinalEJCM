@@ -14,7 +14,7 @@ export class PostsCardsComponent implements OnInit {
 
   @Input() cardPost;
   name ;
-  user: any;
+  user: any = [];
   comment: any = [];
   postTitle = 'Titulo';
 
@@ -36,6 +36,7 @@ export class PostsCardsComponent implements OnInit {
     //console.log('mensagem')
     //console.log(this.cardPost);
     this.getUser();
+    console.log(this.user);
     console.log('mensagem pos getuser');
   }
 
@@ -89,12 +90,12 @@ export class PostsCardsComponent implements OnInit {
         this.user = res.data;
         console.log('pegando info de user em posts');
         console.log(this.user);
-        if (this.user.photo == null) {
+        if (this.user.photo === null) {
           this.user.photo = '../../assets/default_image/user.jpg';
         }
       },
       (error) => {
-        //console.log(error);
+        console.log(error);
       }
     );
   }

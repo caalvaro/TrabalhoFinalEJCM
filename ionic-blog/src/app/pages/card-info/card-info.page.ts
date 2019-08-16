@@ -41,21 +41,26 @@ export class CardInfoPage implements OnInit {
     this.mensage = this.aRoute.snapshot.paramMap.get('mensagen');
     this.getPost();
     this.getComment();
-    console.log('o comment eh');
-    console.log(this.comments);
-    console.log(this.idPost);
+    this.getUser();
+    // this.getPost();
+    // this.getComment();
+    // console.log('o comment eh');
+    // console.log(this.comments);
+    // console.log(this.idPost);
     if (this.commentsSize > this.offset) {
       this.commentCards = this.comments.slice(this.index, this.offset + this.index);
       this.index += this.offset;
     } else {
       this.commentCards = this.comments;
     }
-    console.log('os comments card sao ');
-    console.log(this.commentCards);
-    console.log(this.mensage);
-    this.getUser();
-    console.log('post');
-    console.log(this.post);
+    // console.log('os comments card sao ');
+    // console.log(this.commentCards);
+    // console.log(this.mensage);
+    // this.getUser();
+    // console.log('usuario');
+    // console.log(this.user);
+    // console.log('post');
+    // console.log(this.post);
 
   }
 
@@ -73,7 +78,7 @@ export class CardInfoPage implements OnInit {
     this.commentService.postsComments(this.idPost).subscribe(
       (res) => {
         console.log(res);
-        this.comments.push(res);
+        this.comments = res;
         console.log('mostrando o comments');
         console.log(this.comments);
         this.commentsSize = this.comments.length;
@@ -113,7 +118,9 @@ export class CardInfoPage implements OnInit {
   public getPost() {
     this.postsService.getPost(this.idPost).subscribe(
       (res) => {
-        this.post.push(res);
+        console.log('post service ');
+        this.post = res.data;
+        console.log(this.post);
         console.log('opa pegou a info do post');
         console.log(this.post);
       },
@@ -136,6 +143,8 @@ export class CardInfoPage implements OnInit {
   public change() {
     if (this.post.photo === null) {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -143,10 +152,9 @@ export class CardInfoPage implements OnInit {
   public getUser() {
     this.postsService.getUser(this.idUser).subscribe(
       (res) => {
-        console.log('res antes do get user');
-        console.log(res);
-        this.user.push(res);
-        console.log('pegando info de user');
+        //console.log(res);
+        this.user = res.data;
+        console.log('pegando info de user em posts');
         console.log(this.user);
         if (this.user.photo === null) {
           this.user.photo = '../../assets/default_image/user.jpg';

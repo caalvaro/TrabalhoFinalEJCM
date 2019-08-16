@@ -67,7 +67,7 @@ class User extends Authenticatable
             }
             $image = base64_decode($request->photo);
             $imgName = uniqid().'.png';
-            $path = storage_path('/app/localPhotos/'.$imgname);
+            $path = storage_path('/app/localPhotos/'.$imgName);
             file_put_contents($path,$image);
             $this->photo = $imgName;
         }
